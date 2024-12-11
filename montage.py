@@ -9,7 +9,7 @@ dag_files = {
     150: [f"./workflow/Outputs/montage-150/dag-{i + 1}.json" for i in range(100)],
 }
 iteration = 10
-output = f"./result-{mode}.xlsx"
+output = f"./result-{mode}-1.xlsx"
 
 if __name__ == '__main__':
     exp = Experiment(algorithms, loads, dag_files, iteration, output)

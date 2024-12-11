@@ -14,3 +14,4 @@ class SubTaskModel:
         self.execution = []
         self.data_received_time = 0
         self.total_data_needed = 0
+
