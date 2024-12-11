@@ -1,8 +1,8 @@
 import math
 import random
 
-from network.Node import Node, NodeType
 from network.Connection import Connection
+from network.Node import Node, NodeType
 
 
 class Network:
@@ -28,11 +28,11 @@ class Network:
 
         nodes = []
         nodes.extend([Node(i, NodeType.Edge, "Sun Fire V20z", "Lyon",
-                           1, 2.4, 2, 20, 40) for i in range(10)])
+                           1, 2.4, 2, 20, 40) for i in range(5)])
         nodes.extend([Node(i, NodeType.Edge, " Dell PowerEdge M620", "Luxembourg",
-                           6, 2, 32, 20, 40) for i in range(10, 20)])
+                           6, 2, 32, 20, 40) for i in range(5, 10)])
         nodes.extend([Node(i, NodeType.Cloud, "HPE Proliant DL360 Gen10+", "Toulouse",
-                           16, 2.4, 256, 40, 80) for i in range(20, 22)])
+                           16, 2.4, 256, 40, 80) for i in range(10, 11)])
 
         network = Network(nodes, connections)
         return network

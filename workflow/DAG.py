@@ -1,5 +1,4 @@
 import json
-import math
 from enum import Enum
 
 import matplotlib.pyplot as plt

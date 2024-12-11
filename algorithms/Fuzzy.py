@@ -10,7 +10,7 @@ from network.Network import Network
 class Fuzzy(Algorithm):
     def __init__(self, network: Network, dag: DAGModel):
         super().__init__(network, dag)
-        self.edge_threshold = 1 # GHz
+        self.edge_threshold = 1  # GHz
         self.cloud_threshold = 2  # GHz
 
     def run(self):

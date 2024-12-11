@@ -1,229 +1,229 @@
 {
-    "id": 0,
-    "mode": "Epigenomics",
-    "subtasks": [
-        {
-            "id": 0,
-            "executionCost": 0,
-            "memory": 0
-        },
-        {
-            "id": 1,
-            "executionCost": 2493,
-            "memory": 25820
-        },
-        {
-            "id": 2,
-            "executionCost": 9788,
-            "memory": 63342
-        },
-        {
-            "id": 3,
-            "executionCost": 8580,
-            "memory": 28089
-        },
-        {
-            "id": 4,
-            "executionCost": 1796,
-            "memory": 62092
-        },
-        {
-            "id": 5,
-            "executionCost": 5974,
-            "memory": 49702
-        },
-        {
-            "id": 6,
-            "executionCost": 1678,
-            "memory": 83644
-        },
-        {
-            "id": 7,
-            "executionCost": 6597,
-            "memory": 60264
-        },
-        {
-            "id": 8,
-            "executionCost": 4267,
-            "memory": 62013
-        },
-        {
-            "id": 9,
-            "executionCost": 9305,
-            "memory": 57064
-        },
-        {
-            "id": 10,
-            "executionCost": 9477,
-            "memory": 25237
-        },
-        {
-            "id": 11,
-            "executionCost": 9086,
-            "memory": 80850
-        },
-        {
-            "id": 12,
-            "executionCost": 7709,
-            "memory": 50295
-        },
-        {
-            "id": 13,
-            "executionCost": 2007,
-            "memory": 52298
-        },
-        {
-            "id": 14,
-            "executionCost": 4905,
-            "memory": 20928
-        },
-        {
-            "id": 15,
-            "executionCost": 1093,
-            "memory": 63401
-        },
-        {
-            "id": 16,
-            "executionCost": 8391,
-            "memory": 77712
-        },
-        {
-            "id": 17,
-            "executionCost": 3095,
-            "memory": 33731
-        },
-        {
-            "id": 18,
-            "executionCost": 3342,
-            "memory": 54435
-        },
-        {
-            "id": 19,
-            "executionCost": 5807,
-            "memory": 31727
-        },
-        {
-            "id": 20,
-            "executionCost": 6810,
-            "memory": 42092
-        }
+  "id": 0,
+  "mode": "Epigenomics",
+  "subtasks": [
+    {
+      "id": 0,
+      "executionCost": 0,
+      "memory": 0
+    },
+    {
+      "id": 1,
+      "executionCost": 2493,
+      "memory": 25820
+    },
+    {
+      "id": 2,
+      "executionCost": 9788,
+      "memory": 63342
+    },
+    {
+      "id": 3,
+      "executionCost": 8580,
+      "memory": 28089
+    },
+    {
+      "id": 4,
+      "executionCost": 1796,
+      "memory": 62092
+    },
+    {
+      "id": 5,
+      "executionCost": 5974,
+      "memory": 49702
+    },
+    {
+      "id": 6,
+      "executionCost": 1678,
+      "memory": 83644
+    },
+    {
+      "id": 7,
+      "executionCost": 6597,
+      "memory": 60264
+    },
+    {
+      "id": 8,
+      "executionCost": 4267,
+      "memory": 62013
+    },
+    {
+      "id": 9,
+      "executionCost": 9305,
+      "memory": 57064
+    },
+    {
+      "id": 10,
+      "executionCost": 9477,
+      "memory": 25237
+    },
+    {
+      "id": 11,
+      "executionCost": 9086,
+      "memory": 80850
+    },
+    {
+      "id": 12,
+      "executionCost": 7709,
+      "memory": 50295
+    },
+    {
+      "id": 13,
+      "executionCost": 2007,
+      "memory": 52298
+    },
+    {
+      "id": 14,
+      "executionCost": 4905,
+      "memory": 20928
+    },
+    {
+      "id": 15,
+      "executionCost": 1093,
+      "memory": 63401
+    },
+    {
+      "id": 16,
+      "executionCost": 8391,
+      "memory": 77712
+    },
+    {
+      "id": 17,
+      "executionCost": 3095,
+      "memory": 33731
+    },
+    {
+      "id": 18,
+      "executionCost": 3342,
+      "memory": 54435
+    },
+    {
+      "id": 19,
+      "executionCost": 5807,
+      "memory": 31727
+    },
+    {
+      "id": 20,
+      "executionCost": 6810,
+      "memory": 42092
+    }
+  ],
+  "edges": [
+    [
+      0,
+      19,
+      701
     ],
-    "edges": [
-        [
-            0,
-            19,
-            701
-        ],
-        [
-            0,
-            18,
-            902
-        ],
-        [
-            0,
-            1,
-            458
-        ],
-        [
-            1,
-            2,
-            498
-        ],
-        [
-            2,
-            3,
-            664
-        ],
-        [
-            3,
-            4,
-            476
-        ],
-        [
-            4,
-            5,
-            648
-        ],
-        [
-            5,
-            20,
-            403
-        ],
-        [
-            1,
-            6,
-            771
-        ],
-        [
-            6,
-            7,
-            352
-        ],
-        [
-            7,
-            8,
-            946
-        ],
-        [
-            8,
-            9,
-            955
-        ],
-        [
-            9,
-            20,
-            625
-        ],
-        [
-            1,
-            10,
-            535
-        ],
-        [
-            10,
-            11,
-            625
-        ],
-        [
-            11,
-            12,
-            372
-        ],
-        [
-            12,
-            13,
-            423
-        ],
-        [
-            13,
-            20,
-            615
-        ],
-        [
-            1,
-            14,
-            204
-        ],
-        [
-            14,
-            15,
-            652
-        ],
-        [
-            15,
-            16,
-            991
-        ],
-        [
-            16,
-            17,
-            382
-        ],
-        [
-            17,
-            20,
-            218
-        ]
+    [
+      0,
+      18,
+      902
     ],
-    "deadline": 122318
+    [
+      0,
+      1,
+      458
+    ],
+    [
+      1,
+      2,
+      498
+    ],
+    [
+      2,
+      3,
+      664
+    ],
+    [
+      3,
+      4,
+      476
+    ],
+    [
+      4,
+      5,
+      648
+    ],
+    [
+      5,
+      20,
+      403
+    ],
+    [
+      1,
+      6,
+      771
+    ],
+    [
+      6,
+      7,
+      352
+    ],
+    [
+      7,
+      8,
+      946
+    ],
+    [
+      8,
+      9,
+      955
+    ],
+    [
+      9,
+      20,
+      625
+    ],
+    [
+      1,
+      10,
+      535
+    ],
+    [
+      10,
+      11,
+      625
+    ],
+    [
+      11,
+      12,
+      372
+    ],
+    [
+      12,
+      13,
+      423
+    ],
+    [
+      13,
+      20,
+      615
+    ],
+    [
+      1,
+      14,
+      204
+    ],
+    [
+      14,
+      15,
+      652
+    ],
+    [
+      15,
+      16,
+      991
+    ],
+    [
+      16,
+      17,
+      382
+    ],
+    [
+      17,
+      20,
+      218
+    ]
+  ],
+  "deadline": 122318
 }

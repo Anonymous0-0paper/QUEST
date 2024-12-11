@@ -1,5 +1,5 @@
-import random
 import json
+import random
 
 
 class SubTask:
@@ -23,6 +23,7 @@ class SubTask:
 
     def generate_execution_cost(self, execution_min: int, execution_max: int):
         self.execution_cost = random.randint(execution_min, execution_max)
+
 
 class SubTaskEncoder(json.JSONEncoder):
 

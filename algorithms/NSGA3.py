@@ -1,4 +1,5 @@
 import random
+
 from algorithms.Algorithm import Algorithm
 from model.DAGModel import DAGModel
 from network.Network import Network

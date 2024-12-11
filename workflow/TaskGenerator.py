@@ -1,8 +1,8 @@
 import os
 import random
 
-from workflow.Models.CasaWind import CaseWind
 from workflow.DAG import DAG
+from workflow.Models.CasaWind import CaseWind
 from workflow.Models.CyberShake import CyberShake
 from workflow.Models.Epigenomics import Epigenomics
 from workflow.Models.Genome1000 import Genome1000
