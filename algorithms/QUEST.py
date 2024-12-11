@@ -327,6 +327,7 @@ class QUEST(Algorithm):
         logger.info("QUEST algorithm completed.")
         super().run()
 
+
     def initialize_quantum_population(self) -> List[List[np.ndarray]]:
         """
         Initializes the quantum population with uniform probability distributions.
