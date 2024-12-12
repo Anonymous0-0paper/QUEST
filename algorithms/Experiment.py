@@ -1,7 +1,7 @@
-import json
-import sys
 import csv
+import json
 import os
+import sys
 from statistics import mean
 
 from openpyxl.reader.excel import load_workbook
@@ -77,15 +77,17 @@ class Experiment:
 
                     if i == 0:
                         # Initialize lists for each metric
-                        for metric_idx in range(5):
+                        for metric_idx in range(6):
                             self.result[(algorithm, load, metric_idx)] = []
 
                     # Append results for each metric
                     self.result[(algorithm, load, 0)].append(alg.calculate_data_age())
                     self.result[(algorithm, load, 1)].append(alg.calculate_energy())
                     self.result[(algorithm, load, 2)].append(alg.calculate_completion_time())
-                    self.result[(algorithm, load, 3)].append(alg.calculate_load_balance())
-                    self.result[(algorithm, load, 4)].append(alg.calculate_success())
+                    self.result[(algorithm, load, 3)].append(alg.calculate_success())
+                    (load_edge, load_cloud) = alg.calculate_load()
+                    self.result[(algorithm, load, 4)].append(load_edge)
+                    self.result[(algorithm, load, 5)].append(load_cloud)
 
                     self.progress((current + 1) / total, algorithm)
 
@@ -94,8 +96,9 @@ class Experiment:
             "Data Age": 0,
             "Energy": 1,
             "Makespan": 2,
-            "Load": 3,
-            "Success Rate": 4
+            "Success Rate": 3,
+            "Load Edge": 4,
+            "Load Cloud": 5,
         }
 
         header_fill = PatternFill(start_color="CCE5FF", end_color="CCE5FF", fill_type="solid")
@@ -158,6 +161,48 @@ class Experiment:
                 ws.cell(row=row, column=4, value=min_val)
                 ws.cell(row=row, column=5, value=max_val)
                 ws.cell(row=row, column=6, value=std_dev)
+
+                row += 1
+
+            row += 2
+            chart_header_1 = ws.cell(row=row, column=1, value="Average data for chart")
+            chart_header_1.font = header_font
+            row += 1
+
+            ws.cell(row=row, column=1, value="Algorithms")
+            for l in range(len(self.loads)):
+                ws.cell(row=row, column=l + 2, value=self.loads[l])
+
+            row += 1
+
+            for algorithm in self.algorithms:
+                ws.cell(row=row, column=1, value=algorithm)
+
+                for l in range(len(self.loads)):
+                    avg = mean(self.result.get((algorithm, self.loads[l], metric_index)))
+                    ws.cell(row=row, column=l + 2, value=avg)
+
+                row += 1
+
+            row += 2
+            chart_header_2 = ws.cell(row=row, column=1, value="All data for chart")
+            chart_header_2.font = header_font
+            row += 1
+
+            ws.cell(row=row, column=1, value="Algorithms")
+            for l in range(len(self.loads)):
+                for i in range(self.iteration):
+                    ws.cell(row=row, column=l * self.iteration + i + 2, value=self.loads[l])
+
+            row += 1
+
+            for algorithm in self.algorithms:
+                ws.cell(row=row, column=1, value=algorithm)
+
+                for l in range(len(self.loads)):
+                    for i in range(self.iteration):
+                        data = self.result.get((algorithm, self.loads[l], metric_index))[i]
+                        ws.cell(row=row, column=l * self.iteration + i + 2, value=data)
 
                 row += 1
 
@@ -289,7 +334,8 @@ class Experiment:
                         else:
                             avg_improvement_pct = float('inf')
 
-                    print(f"  {algorithm} - Average Difference: {avg_diff:.4f} ({better_avg}), Improvement: {avg_improvement_pct:.2f}%")
+                    print(
+                        f"  {algorithm} - Average Difference: {avg_diff:.4f} ({better_avg}), Improvement: {avg_improvement_pct:.2f}%")
                     print(f"             Min Difference: {min_diff:.4f} ({better_min})")
                     print(f"             Max Difference: {max_diff:.4f} ({better_max})")
             except KeyError:

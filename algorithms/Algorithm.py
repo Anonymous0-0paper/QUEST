@@ -4,7 +4,7 @@ from queue import Queue
 from model.DAGModel import DAGModel
 from model.SubTaskModel import SubTaskModel
 from network.Network import Network
-from network.Node import Node
+from network.Node import Node, NodeType
 
 
 class Algorithm:
@@ -97,20 +97,26 @@ class Algorithm:
 
         return age / len(self.dag.subtasks)
 
-    def calculate_load_balance(self):
-        minimum: float = math.inf
-        maximum: float = -math.inf
+    def calculate_load(self):
+        edge_load: float = 0.0
+        edge_count: int = 0
+        cloud_load: float = 0.0
+        cloud_count: int = 0
 
         for node in self.network.nodes:
             node_load: float = 0.0
             for core in node.allocations:
                 for item in core:
                     node_load += item[2] - item[1]
-            node_load = node_load / node.cores
-            minimum = min(minimum, node_load)
-            maximum = max(maximum, node_load)
 
-        return minimum / maximum
+            if node.node_type == NodeType.Edge:
+                edge_load += node_load
+                edge_count += 1
+            else:
+                cloud_load += node_load
+                cloud_count += 1
+
+        return edge_load / edge_count, cloud_load / cloud_count
 
     def calculate_success(self):
         makespan = self.calculate_completion_time()

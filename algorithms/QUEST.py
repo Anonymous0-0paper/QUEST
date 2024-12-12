@@ -233,7 +233,7 @@ from model.DAGModel import DAGModel
 from network.Network import Network
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 
