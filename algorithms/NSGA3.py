@@ -50,6 +50,7 @@ class NSGA3(Algorithm):
         return population
 
     def calculate_objectives(self):
+        super().run()
         energy = self.calculate_energy()
         completion_time = self.calculate_completion_time()
         return {

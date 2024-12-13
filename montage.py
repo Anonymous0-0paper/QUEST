@@ -2,7 +2,7 @@ from algorithms.Experiment import Experiment
 
 mode = "montage"
 loads = [50, 100, 150]
-algorithms = ["Random", "Fuzzy", "NSGA3", "QUEST"]
+algorithms = ["Random", "Fuzzy", "NSGA3", "QUEST", "MQGA"]
 dag_files = {
     50: [f"./workflow/Outputs/montage-50/dag-{i + 1}.json" for i in range(100)],
     100: [f"./workflow/Outputs/montage-100/dag-{i + 1}.json" for i in range(100)],

@@ -9,6 +9,7 @@ from openpyxl.styles import PatternFill, Font
 
 from algorithms.Algorithm import Algorithm
 from algorithms.Fuzzy import Fuzzy
+from algorithms.MQGA import MQGA
 from algorithms.NSGA3 import NSGA3
 from algorithms.QUEST import QUEST
 from algorithms.Random import Random
@@ -62,6 +63,7 @@ class Experiment:
                             i * len(self.algorithms) +
                             a
                     )
+                    self.progress(current / total, algorithm)
 
                     alg: Algorithm | None = None
                     if algorithm == "Random":
@@ -72,6 +74,8 @@ class Experiment:
                         alg = NSGA3(network, dag)
                     elif algorithm == "QUEST":
                         alg = QUEST(network, dag)
+                    elif algorithm == "MQGA":
+                        alg = MQGA(network, dag)
 
                     alg.run()
 
