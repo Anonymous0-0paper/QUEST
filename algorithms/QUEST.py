@@ -1,6 +1,6 @@
-import random
-import logging
 import copy
+import logging
+import random
 from typing import List, Tuple, Dict, Any
 
 import numpy as np
@@ -43,7 +43,10 @@ class QUEST(Algorithm):
         self.error_probability: float = 1 - self.gate_fidelity
 
         # Initialize assignment as a dictionary
-        self.assign: Dict[int, int] = {subtask.id: 0 for subtask in self.dag.subtasks}
+        self.assign: Dict[int, int] = {
+            subtask.id: random.randrange(len(self.network.nodes)) for subtask in self.dag.subtasks
+        }
+        self.per_iteration_objectives: list[float] = []
 
     def run(self):
         """
@@ -95,6 +98,8 @@ class QUEST(Algorithm):
 
             population = new_population
 
+            self.per_iteration_objectives.append(best_objectives)
+
         if best_assignment is not None:
             self.assign = best_assignment
             logger.info("Best assignment found and set.")
@@ -103,7 +108,6 @@ class QUEST(Algorithm):
 
         logger.info("QUEST algorithm completed.")
         super().run()
-
 
     def initialize_quantum_population(self) -> List[List[np.ndarray]]:
         """
@@ -218,7 +222,6 @@ class QUEST(Algorithm):
 
         logger.debug("Population evaluated.")
         return evaluated
-
 
     def chromosome_to_assignment(self, chromosome: List[np.ndarray]) -> Dict[int, int]:
         """
@@ -363,7 +366,6 @@ class QUEST(Algorithm):
 
         logger.debug(f"Weighted objectives calculated: {objectives}")
         return objectives
-
 
     def quantum_interference(self, chromosome: List[np.ndarray]) -> List[np.ndarray]:
         """

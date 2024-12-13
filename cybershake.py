@@ -8,7 +8,7 @@ dag_files = {
     40: [f"./workflow/Outputs/cybershake-40/dag-{i + 1}.json" for i in range(100)],
     100: [f"./workflow/Outputs/cybershake-100/dag-{i + 1}.json" for i in range(100)],
 }
-iteration = 10
+iteration = 100
 output = f"./result-{mode}-1.xlsx"
 
 if __name__ == '__main__':

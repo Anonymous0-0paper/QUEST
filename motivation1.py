@@ -21,7 +21,7 @@ dag_files = {
 }
 output = f"./motivation-1.xlsx"
 
-samples = 10
+samples = 100
 algorithms = [Random, QUEST, NSGA3, MQGA, MOPSO, Fuzzy, Greedy]
 
 if __name__ == '__main__':

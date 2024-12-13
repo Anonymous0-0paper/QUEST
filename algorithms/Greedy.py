@@ -8,7 +8,7 @@ from network.Network import Network
 class Greedy(Algorithm):
     def __init__(self, network: Network, dag: DAGModel):
         super().__init__(network, dag)
-        self.peak_aoi = self.dag.deadline / len(self.dag.subtasks) * (len(self.network.nodes) / 2)
+        self.peak_aoi = self.dag.deadline / (len(self.dag.subtasks) * len(self.network.nodes) / 2)
         self.assign = {}
 
     def run(self):
@@ -18,7 +18,7 @@ class Greedy(Algorithm):
         sorted_tasks = self.get_sorted_tasks()
 
         for task in sorted_tasks:
-            best_node = None
+            best_node = self.assign[task.id]
             best_objective = float('inf')
 
             for node in self.network.nodes:
@@ -34,8 +34,7 @@ class Greedy(Algorithm):
                         best_objective = objective
                         best_node = node.index
 
-            if best_node is not None:
-                self.assign[task.id] = best_node
+            self.assign[task.id] = best_node
 
         super().run()
 

@@ -8,7 +8,7 @@ dag_files = {
     100: [f"./workflow/Outputs/montage-100/dag-{i + 1}.json" for i in range(100)],
     150: [f"./workflow/Outputs/montage-150/dag-{i + 1}.json" for i in range(100)],
 }
-iteration = 10
+iteration = 100
 output = f"./result-{mode}-1.xlsx"
 
 if __name__ == '__main__':

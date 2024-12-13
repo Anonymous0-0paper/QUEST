@@ -1,14 +1,17 @@
 import random
+
 from algorithms.Algorithm import Algorithm
 from model.DAGModel import DAGModel
 from network.Network import Network
 
-class NSGA3(Algorithm):
+
+class NSGA3_AoI(Algorithm):
     def __init__(self, network: Network, dag: DAGModel):
         super().__init__(network, dag)
         self.population_size = 20
         self.max_iterations = 100
         self.mutation_rate = 0.1
+        self.per_iteration_objectives: list[float] = []
 
     def run(self):
         population = self.initialize_population()
@@ -31,6 +34,8 @@ class NSGA3(Algorithm):
                     best_objectives = total_objective
                     best_assignment = individual.copy()
 
+            self.per_iteration_objectives.append(best_objectives)
+
         self.assign = best_assignment
 
     def initialize_population(self):
@@ -42,9 +47,20 @@ class NSGA3(Algorithm):
         ]
 
     def calculate_objectives(self):
+        energy = self.calculate_energy()
+        completion_time = self.calculate_completion_time()
+        data_age = self.calculate_data_age()
+
+        # Aggregate objectives with weights
+        weights = {
+            'energy': 0.5,
+            'completion_time': 0.3,
+            'data_age': 0.2
+        }
         return {
-            'energy': self.calculate_energy() / 1000,
-            'completion_time': self.calculate_completion_time()
+            'energy': (energy / 1000) * weights['energy'],
+            'completion_time': completion_time * weights['completion_time'],
+            'data_age': (data_age * 1000) * weights['data_age']
         }
 
     def mutation(self, individual):

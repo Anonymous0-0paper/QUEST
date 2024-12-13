@@ -8,7 +8,7 @@ class SubTaskModel:
         self.total_data_needed: int = 0
 
         # 0: node id, 1: start time, 2: end time
-        self.execution = list[int]
+        self.execution : list[int] = []
 
     def clear(self):
         self.execution = []

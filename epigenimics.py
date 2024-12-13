@@ -8,7 +8,7 @@ dag_files = {
     30: [f"./workflow/Outputs/epigenomics-30/dag-{i + 1}.json" for i in range(100)],
     50: [f"./workflow/Outputs/epigenomics-50/dag-{i + 1}.json" for i in range(100)],
 }
-iteration = 10
+iteration = 100
 output = f"./result-{mode}-1.xlsx"
 
 if __name__ == '__main__':
