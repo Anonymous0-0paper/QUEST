@@ -1,9 +1,7 @@
 import random
-
 from algorithms.Algorithm import Algorithm
 from model.DAGModel import DAGModel
 from network.Network import Network
-
 
 class NSGA3(Algorithm):
     def __init__(self, network: Network, dag: DAGModel):
@@ -17,19 +15,12 @@ class NSGA3(Algorithm):
         best_assignment = None
         best_objectives = float('inf')
 
-        for iteration in range(self.max_iterations):
-            new_population = []
-
-            for _ in range(self.population_size):
-                parents = self.select_parents(population, k=2)
-                child = self.crossover(parents[0], parents[1])
-                child = self.mutation(child)
-                new_population.append(child)
-
-            population = new_population
+        for _ in range(self.max_iterations):
+            population = self.create_next_generation(population)
 
             for individual in population:
                 self.assign = individual
+                super().run()
                 objectives = self.calculate_objectives()
                 total_objective = sum(objectives.values())
 
@@ -38,24 +29,19 @@ class NSGA3(Algorithm):
                     best_assignment = individual.copy()
 
         self.assign = best_assignment
-        super().run()
 
     def initialize_population(self):
-        population = []
-        for _ in range(self.population_size):
-            individual = {}
-            for task_id in range(len(self.dag.subtasks)):
-                individual[task_id] = random.randrange(len(self.network.nodes))
-            population.append(individual)
-        return population
+        num_tasks = len(self.dag.subtasks)
+        num_nodes = len(self.network.nodes)
+        return [
+            {task_id: random.randrange(num_nodes) for task_id in range(num_tasks)}
+            for _ in range(self.population_size)
+        ]
 
     def calculate_objectives(self):
-        super().run()
-        energy = self.calculate_energy()
-        completion_time = self.calculate_completion_time()
         return {
-            'energy': energy / 1000,
-            'completion_time': completion_time
+            'energy': self.calculate_energy() / 1000,
+            'completion_time': self.calculate_completion_time()
         }
 
     def mutation(self, individual):
@@ -65,52 +51,48 @@ class NSGA3(Algorithm):
         return individual
 
     def crossover(self, parent1, parent2):
-        child = {}
-        for task_id in range(len(self.dag.subtasks)):
-            if random.random() < 0.5:
-                child[task_id] = parent1[task_id]
-            else:
-                child[task_id] = parent2[task_id]
-        return child
+        return {
+            task_id: (parent1[task_id] if random.random() < 0.5 else parent2[task_id])
+            for task_id in range(len(self.dag.subtasks))
+        }
 
     def fast_non_dominated_sort(self, solutions):
+        domination_count = {id(s): 0 for s in solutions}
+        dominated_solutions = {id(s): [] for s in solutions}
         fronts = [[]]
+
         for p in solutions:
-            p[1]['domination_count'] = 0
-            p[1]['dominated_solutions'] = []
-
+            p_dominates = dominated_solutions[id(p)]
             for q in solutions:
-                if self.dominates(p[1], q[1]):
-                    p[1]['dominated_solutions'].append(q)
-                elif self.dominates(q[1], p[1]):
-                    p[1]['domination_count'] += 1
+                if p is not q:
+                    if self.dominates(p[1], q[1]):
+                        p_dominates.append(q)
+                    elif self.dominates(q[1], p[1]):
+                        domination_count[id(p)] += 1
 
-            if p[1]['domination_count'] == 0:
+            if domination_count[id(p)] == 0:
                 p[1]['rank'] = 0
                 fronts[0].append(p)
 
-        i = 0
-        while fronts[i]:
+        current_front = 0
+        while fronts[current_front]:
             next_front = []
-            for p in fronts[i]:
-                for q in p[1]['dominated_solutions']:
-                    q[1]['domination_count'] -= 1
-                    if q[1]['domination_count'] == 0:
-                        q[1]['rank'] = i + 1
+            for p in fronts[current_front]:
+                for q in dominated_solutions[id(p)]:
+                    domination_count[id(q)] -= 1
+                    if domination_count[id(q)] == 0:
+                        q[1]['rank'] = current_front + 1
                         next_front.append(q)
-            i += 1
+            current_front += 1
             fronts.append(next_front)
 
         return fronts[:-1]
 
     def dominates(self, obj1, obj2):
-        better_in_any = False
-        for key in ['energy', 'completion_time']:
-            if obj1[key] > obj2[key]:
-                return False
-            elif obj1[key] < obj2[key]:
-                better_in_any = True
-        return better_in_any
+        return (
+                all(obj1[key] <= obj2[key] for key in ['energy', 'completion_time']) and
+                any(obj1[key] < obj2[key] for key in ['energy', 'completion_time'])
+        )
 
     def calculate_crowding_distance(self, front):
         if len(front) <= 2:
@@ -118,41 +100,45 @@ class NSGA3(Algorithm):
                 solution[1]['crowding_distance'] = float('inf')
             return
 
+        num_objectives = len(front[0][1])
         for solution in front:
             solution[1]['crowding_distance'] = 0
 
         for objective in ['energy', 'completion_time']:
             front.sort(key=lambda x: x[1][objective])
-
-            obj_range = front[-1][1][objective] - front[0][1][objective]
-            if obj_range == 0:
-                continue
-
             front[0][1]['crowding_distance'] = float('inf')
             front[-1][1]['crowding_distance'] = float('inf')
+            obj_range = front[-1][1][objective] - front[0][1][objective] or 1e-9
 
             for i in range(1, len(front) - 1):
-                distance = (front[i + 1][1][objective] - front[i - 1][1][objective]) / obj_range
-                front[i][1]['crowding_distance'] += distance
+                front[i][1]['crowding_distance'] += (
+                        (front[i + 1][1][objective] - front[i - 1][1][objective]) / obj_range
+                )
 
     def select_parents(self, population, k=2):
-        evaluated_solutions = []
-        for individual in population:
-            self.assign = individual
-            objectives = self.calculate_objectives()
-            evaluated_solutions.append((individual, objectives))
-
+        evaluated_solutions = [(individual, self.calculate_objectives()) for individual in population]
         fronts = self.fast_non_dominated_sort(evaluated_solutions)
+
         for front in fronts:
             self.calculate_crowding_distance(front)
 
-        selected_parents = []
+        selected = []
         for _ in range(k):
-            candidates = random.sample(evaluated_solutions, k=3)
-            winner = min(candidates, key=lambda x: (
-                x[1].get('rank', float('inf')),
-                -x[1].get('crowding_distance', 0)
-            ))
-            selected_parents.append(winner[0])
+            tournament = random.sample(evaluated_solutions, 3)
+            winner = min(
+                tournament, key=lambda x: (
+                    x[1].get('rank', float('inf')),
+                    -x[1].get('crowding_distance', 0)
+                )
+            )
+            selected.append(winner[0])
 
-        return selected_parents
+        return selected
+
+    def create_next_generation(self, population):
+        new_population = []
+        for _ in range(self.population_size):
+            parents = self.select_parents(population, k=2)
+            child = self.crossover(parents[0], parents[1])
+            new_population.append(self.mutation(child))
+        return new_population

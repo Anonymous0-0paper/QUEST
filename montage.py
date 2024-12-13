@@ -2,13 +2,13 @@ from algorithms.Experiment import Experiment
 
 mode = "montage"
 loads = [50, 100, 150]
-algorithms = ["Random", "Fuzzy", "NSGA3", "QUEST", "MQGA"]
+algorithms = ["Random", "Fuzzy", "NSGA3", "QUEST", "MQGA", "greedy"]
 dag_files = {
     50: [f"./workflow/Outputs/montage-50/dag-{i + 1}.json" for i in range(100)],
     100: [f"./workflow/Outputs/montage-100/dag-{i + 1}.json" for i in range(100)],
     150: [f"./workflow/Outputs/montage-150/dag-{i + 1}.json" for i in range(100)],
 }
-iteration = 10
+iteration = 5
 output = f"./result-{mode}-1.xlsx"
 
 if __name__ == '__main__':

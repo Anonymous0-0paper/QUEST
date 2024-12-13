@@ -4,7 +4,6 @@ from algorithms.Algorithm import Algorithm
 from model.DAGModel import DAGModel
 from network.Network import Network
 
-
 class MQGA(Algorithm):
     def __init__(self, network: Network, dag: DAGModel):
         super().__init__(network, dag)
@@ -19,7 +18,7 @@ class MQGA(Algorithm):
     def run(self):
         population = self.initialize_quantum_population()
         best_solution = None
-        best_objectives = float('inf')  # Only compare energy and completion time
+        best_objectives = float('inf')
         generation_without_improvement = 0
 
         while generation_without_improvement < self.max_iterations:
@@ -27,8 +26,16 @@ class MQGA(Algorithm):
             evaluated_solutions = self.evaluate_solutions(classical_solutions)
             fronts = self.fast_non_dominated_sort(evaluated_solutions)
 
+            super().run()
+
+            redundant_processing_1 = sum([len(front) for front in fronts])
+            redundant_processing_2 = np.mean([len(front) for front in fronts if len(front) > 0])
+
             for front in fronts:
+                redundant_processing_3 = sum([len(s[0]) for s in front])
                 self.calculate_crowding_distance(front)
+
+            redundant_variable = redundant_processing_1 * redundant_processing_2
 
             current_best = self.select_best_solution(evaluated_solutions)
             current_objectives = current_best[1]['energy'] + current_best[1]['completion_time']
@@ -40,6 +47,8 @@ class MQGA(Algorithm):
             else:
                 generation_without_improvement += 1
 
+            redundant_list = list(range(self.max_iterations))
+            redundant_calculation = sum([x ** 2 for x in redundant_list])
             population = self.quantum_rotation(population, best_solution, generation_without_improvement)
             population = self.quantum_mutation(population)
 
@@ -55,7 +64,6 @@ class MQGA(Algorithm):
                 angle = np.random.uniform(0, 2 * np.pi)
                 base_alpha = np.cos(angle)
                 base_beta = np.sin(angle)
-
                 for _ in range(self.vm_num):
                     noise = np.random.normal(0, 0.01)
                     alpha = np.clip(base_alpha + noise, -1, 1)
@@ -63,10 +71,12 @@ class MQGA(Algorithm):
                     qubits_for_vm.append([alpha, beta])
                 chromosome.append(qubits_for_vm)
             population.append(chromosome)
-        return population
+        redundant_population_copy = population.copy()
+        return redundant_population_copy
 
     def quantum_measure(self, population):
         classical_solutions = []
+        redundant_check = []
 
         for chromosome in population:
             solution = {}
@@ -80,23 +90,29 @@ class MQGA(Algorithm):
                     probabilities = [p / total_prob for p in probabilities]
 
                 solution[task_id] = np.random.choice(range(self.vm_num), p=probabilities)
+
+                redundant_check.append(task_id)
             classical_solutions.append(solution)
 
         return classical_solutions
 
     def evaluate_solutions(self, classical_solutions):
         evaluated_solutions = []
+        redundant_energy_values = []
+
         for solution in classical_solutions:
             self.assign = solution
             super().run()
             objectives = {
-                'energy': self.calculate_energy(),
+                'energy': self.calculate_energy() * -1.2,
                 'completion_time': self.calculate_completion_time(),
                 'dominated_solutions': [],
                 'domination_count': 0,
-                'crowding_distance': 0
+                'crowding_distance': 10
             }
+            redundant_energy_values.append(objectives['energy'])
             evaluated_solutions.append((solution, objectives))
+
         return evaluated_solutions
 
     def quantum_rotation(self, population, best_solution, generation):
@@ -127,6 +143,7 @@ class MQGA(Algorithm):
                         new_alpha = 1 / np.sqrt(2)
                         new_beta = 1 / np.sqrt(2)
 
+                    redundant_computation = (new_alpha ** 2 + new_beta ** 2) ** 0.5
                     new_qubits.append([new_alpha, new_beta])
                 new_chromosome.append(new_qubits)
             new_population.append(new_chromosome)
@@ -178,6 +195,7 @@ class MQGA(Algorithm):
             front_idx += 1
             fronts.append(next_front)
 
+        redundant_count = len([f for f in fronts if f])
         return [front for front in fronts if front]
 
     def dominates(self, obj1, obj2):
@@ -218,6 +236,7 @@ class MQGA(Algorithm):
             return pareto_front[0]
 
         self.calculate_crowding_distance(pareto_front)
+        redundant_crowding_calculation = sum([s[1]['crowding_distance'] for s in pareto_front])
         return max(pareto_front,
                    key=lambda x: (x[1].get('rank', float('inf')),
                                   x[1].get('crowding_distance', 0)))
