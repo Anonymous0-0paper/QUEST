@@ -6,9 +6,12 @@ from statistics import mean
 
 from openpyxl.reader.excel import load_workbook
 from openpyxl.styles import PatternFill, Font
+from openpyxl.workbook import Workbook
 
 from algorithms.Algorithm import Algorithm
 from algorithms.Fuzzy import Fuzzy
+from algorithms.Greedy import Greedy
+from algorithms.MOPSO import MOPSO
 from algorithms.MQGA import MQGA
 from algorithms.NSGA3 import NSGA3
 from algorithms.QUEST import QUEST
@@ -41,19 +44,8 @@ class Experiment:
             load = self.loads[l]
 
             for i in range(self.iteration):
-                file_index = i % len(self.dag_files[load])
-                with open(self.dag_files[load][file_index], 'r') as file:
-                    json_data = json.load(file)
-                    subtasks: list[SubTaskModel] = []
-                    for subtask_dto in json_data["subtasks"]:
-                        subtask = SubTaskModel(
-                            subtask_dto["id"],
-                            subtask_dto["executionCost"],
-                            subtask_dto["memory"]
-                        )
-                        subtasks.append(subtask)
-
-                    dag = DAGModel(subtasks, json_data["edges"], json_data["deadline"])
+                file = self.dag_files[load][i % len(self.dag_files[load])]
+                dag = Experiment.read_dag(file)
 
                 for a in range(len(self.algorithms)):
                     algorithm = self.algorithms[a]
@@ -76,6 +68,10 @@ class Experiment:
                         alg = QUEST(network, dag)
                     elif algorithm == "MQGA":
                         alg = MQGA(network, dag)
+                    elif algorithm == "Greedy":
+                        alg = Greedy(network, dag)
+                    elif algorithm == "MOPSO":
+                        alg = MOPSO(network, dag)
 
                     alg.run()
 
@@ -109,7 +105,7 @@ class Experiment:
         header_font = Font(bold=True)
 
         for metric_name, metric_index in metrics.items():
-            ws = self.create_sheet(metric_name)
+            ws = self.create_sheet(self.wb, metric_name)
 
             # Write headers
             headers = ["Algorithm", "Load", "Average", "Min", "Max", "Std Dev"]
@@ -414,15 +410,33 @@ class Experiment:
 
                         writer.writerow([algorithm, load, quest_avg, other_avg, avg_diff, improvement_pct])
 
-    def create_sheet(self, sheet_name: str):
-        if sheet_name in self.wb.sheetnames:
-            ws = self.wb[sheet_name]
+    @staticmethod
+    def create_sheet(wb: Workbook, sheet_name: str):
+        if sheet_name in wb.sheetnames:
+            ws = wb[sheet_name]
         else:
-            ws = self.wb.create_sheet(sheet_name)
+            ws = wb.create_sheet(sheet_name)
         return ws
 
-    def progress(self, percent: float, algorithm: str):
+    @staticmethod
+    def progress(percent: float, algorithm: str):
         arrow = '=' * int(round(percent * 100) - 1)
         spaces = ' ' * (100 - len(arrow))
         sys.stdout.write(f'\rProgress: [{arrow + spaces}] {int(percent * 100)}% [{algorithm}]')
         sys.stdout.flush()
+
+    @staticmethod
+    def read_dag(file: str):
+        with open(file, 'r') as file:
+            json_data = json.load(file)
+            subtasks: list[SubTaskModel] = []
+            for subtask_dto in json_data["subtasks"]:
+                subtask = SubTaskModel(
+                    subtask_dto["id"],
+                    subtask_dto["executionCost"],
+                    subtask_dto["memory"]
+                )
+                subtasks.append(subtask)
+
+            dag = DAGModel(subtasks, json_data["edges"], json_data["deadline"])
+            return dag

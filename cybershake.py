@@ -2,7 +2,7 @@ from algorithms.Experiment import Experiment
 
 mode = "cybershake"
 loads = [20, 40, 100]
-algorithms = ["Random", "Fuzzy", "NSGA3", "QUEST"]
+algorithms = ["QUEST", "Fuzzy", "NSGA3", "MQGA", "Greedy", "MOPSO"]
 dag_files = {
     20: [f"./workflow/Outputs/cybershake-20/dag-{i + 1}.json" for i in range(100)],
     40: [f"./workflow/Outputs/cybershake-40/dag-{i + 1}.json" for i in range(100)],

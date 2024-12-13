@@ -13,10 +13,12 @@ class Algorithm:
         self.network = network
         self.dag = dag
         self.assign: dict[int, int] = {}
+        self.total_latency = 0
 
     def clear(self):
         self.network.clear()
         self.dag.clear()
+        self.total_latency = 0
 
     def run(self):
         self.clear()
@@ -64,6 +66,7 @@ class Algorithm:
         edges = [e for e in self.dag.edges if e[0] == subtask.id]
         for e in edges:
             data_transfer_time = self.network.transition(self.assign[e[0]], self.assign[e[1]], e[2])
+            self.total_latency += data_transfer_time
             data_received_time = subtask.execution[2] + data_transfer_time
             self.dag.subtasks[e[1]].total_data_needed -= 1
             if self.dag.subtasks[e[1]].data_received_time < data_received_time:
@@ -96,6 +99,9 @@ class Algorithm:
             age += subtask.execution[2] - subtask.data_received_time
 
         return age / len(self.dag.subtasks)
+
+    def calculate_latency(self):
+        return self.total_latency / len(self.dag.subtasks)
 
     def calculate_load(self):
         edge_load: float = 0.0
