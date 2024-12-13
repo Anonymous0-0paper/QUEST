@@ -3,6 +3,8 @@ import json
 import os
 import sys
 from statistics import mean
+from time import time
+from psutil import cpu_percent, virtual_memory, disk_usage
 
 from openpyxl.reader.excel import load_workbook
 from openpyxl.styles import PatternFill, Font
@@ -31,9 +33,13 @@ class Experiment:
         self.iteration = iteration
         self.output = output
 
+
         # key: (algorithm, load, metric_index)
         # value: list of samples
         self.result: dict[tuple[str, int, int], list[float]] = {}
+        self.utilization_data = []  # To store CPU, memory, and disk usage
+        self.execution_times = []  # To store execution times
+        self.peak_cpu_data = []    # To store peak CPU usage
         self.wb = load_workbook(self.output)
 
     def run(self):
@@ -57,7 +63,6 @@ class Experiment:
                     )
                     self.progress(current / total, algorithm)
 
-                    alg: Algorithm | None = None
                     if algorithm == "Random":
                         alg = Random(network, dag)
                     elif algorithm == "Fuzzy":
@@ -72,8 +77,31 @@ class Experiment:
                         alg = Greedy(network, dag)
                     elif algorithm == "MOPSO":
                         alg = MOPSO(network, dag)
+                    else:
+                        raise ValueError(f"Unknown algorithm: {algorithm}")
+
+
+                    # Record resource utilization and execution time
+                    start_time = time()
+                    cpu_before = cpu_percent(interval=None)
+                    memory_before = virtual_memory().percent
+                    disk_before = disk_usage('/').percent
 
                     alg.run()
+
+                    cpu_after = cpu_percent(interval=None)
+                    memory_after = virtual_memory().percent
+                    disk_after = disk_usage('/').percent
+                    end_time = time()
+
+                    execution_time = end_time - start_time
+                    self.execution_times.append((algorithm, load, execution_time))
+                    self.utilization_data.append((
+                        algorithm, load,
+                        (cpu_before + cpu_after) / 2,
+                        (memory_before + memory_after) / 2,
+                        (disk_before + disk_after) / 2
+                    ))
 
                     if i == 0:
                         # Initialize lists for each metric
@@ -223,12 +251,36 @@ class Experiment:
 
         # --- Added Code for Saving Data to CSVs ---
         self.store_csvs(metrics)
+        self.store_utilization_csv()
+        self.store_execution_time_csv()
 
         # --- Compare QUEST with others and print ---
         self.compare_quest(metrics)
 
         # --- Store improvements in CSV ---
         self.store_improvements_csv(metrics)
+
+    def store_utilization_csv(self):
+        """
+        Saves CPU, memory, and disk utilization data into a CSV file.
+        """
+        csv_path = os.path.join(os.path.dirname(self.output), "utilization_data.csv")
+        with open(csv_path, mode='w', newline='') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(["Algorithm", "Load", "CPU (%)", "Memory (%)", "Disk (%)"])
+            writer.writerows(self.utilization_data)
+        print(f"Utilization data saved to {csv_path}")
+
+    def store_execution_time_csv(self):
+        """
+        Saves algorithm execution times into a CSV file.
+        """
+        csv_path = os.path.join(os.path.dirname(self.output), "execution_times.csv")
+        with open(csv_path, mode='w', newline='') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(["Algorithm", "Load", "Execution Time (s)"])
+            writer.writerows(self.execution_times)
+        print(f"Execution times saved to {csv_path}")
 
     def store_csvs(self, metrics: dict):
         """

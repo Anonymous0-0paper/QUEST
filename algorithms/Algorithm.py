@@ -42,7 +42,8 @@ class Algorithm:
             while not backup_queue.empty():
                 queue.put(backup_queue.get())
 
-    def schedule(self, subtask: SubTaskModel, node: Node):
+    @staticmethod
+    def schedule(subtask: SubTaskModel, node: Node):
 
         candidate_core_index = 0
         candidate_core_idle_time = math.inf
