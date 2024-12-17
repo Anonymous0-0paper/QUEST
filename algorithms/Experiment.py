@@ -251,7 +251,7 @@ class Experiment:
                 ws.column_dimensions[column[0].column_letter].width = adjusted_width
 
         # Save node level load in edges
-        ws = self.create_sheet(self.wb, "Load Edges")
+        ws = self.create_sheet(self.wb, "Loads")
         row = 1
         chart_header_1 = ws.cell(row=row, column=1, value="Average data for chart")
         chart_header_1.font = header_font
