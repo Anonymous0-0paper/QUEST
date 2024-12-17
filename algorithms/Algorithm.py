@@ -125,6 +125,19 @@ class Algorithm:
 
         return edge_load / edge_count, cloud_load / cloud_count
 
+    def calculate_load_per_node(self):
+        load: list[float] = []
+
+        for node in self.network.nodes:
+            node_load: float = 0.0
+            for core in node.allocations:
+                for item in core:
+                    node_load += item[2] - item[1]
+
+            load.append(node_load)
+
+        return load
+
     def calculate_success(self):
         makespan = self.calculate_completion_time()
         return makespan <= self.dag.deadline

@@ -21,6 +21,7 @@ from algorithms.Random import Random
 from model.DAGModel import DAGModel
 from model.SubTaskModel import SubTaskModel
 from network.Network import Network
+from network.Node import NodeType
 
 
 class Experiment:
@@ -37,14 +38,14 @@ class Experiment:
         # key: (algorithm, load, metric_index)
         # value: list of samples
         self.result: dict[tuple[str, int, int], list[float]] = {}
+        self.result_load: dict[tuple[str, int], list[list[float]]] = {}
         self.utilization_data = []  # To store CPU, memory, and disk usage
         self.execution_times = []  # To store execution times
         self.peak_cpu_data = []    # To store peak CPU usage
         self.wb = load_workbook(self.output)
+        self.network = Network.generate()
 
     def run(self):
-        network = Network.generate()
-
         total = len(self.loads) * len(self.algorithms) * self.iteration
         for l in range(len(self.loads)):
             load = self.loads[l]
@@ -64,19 +65,19 @@ class Experiment:
                     self.progress(current / total, algorithm)
 
                     if algorithm == "Random":
-                        alg = Random(network, dag)
+                        alg = Random(self.network, dag)
                     elif algorithm == "Fuzzy":
-                        alg = Fuzzy(network, dag)
+                        alg = Fuzzy(self.network, dag)
                     elif algorithm == "NSGA3":
-                        alg = NSGA3(network, dag)
+                        alg = NSGA3(self.network, dag)
                     elif algorithm == "QUEST":
-                        alg = QUEST(network, dag)
+                        alg = QUEST(self.network, dag)
                     elif algorithm == "MQGA":
-                        alg = MQGA(network, dag)
+                        alg = MQGA(self.network, dag)
                     elif algorithm == "Greedy":
-                        alg = Greedy(network, dag)
+                        alg = Greedy(self.network, dag)
                     elif algorithm == "MOPSO":
-                        alg = MOPSO(network, dag)
+                        alg = MOPSO(self.network, dag)
                     else:
                         raise ValueError(f"Unknown algorithm: {algorithm}")
 
@@ -107,6 +108,7 @@ class Experiment:
                         # Initialize lists for each metric
                         for metric_idx in range(6):
                             self.result[(algorithm, load, metric_idx)] = []
+                        self.result_load[(algorithm, load)] = []
 
                     # Append results for each metric
                     self.result[(algorithm, load, 0)].append(alg.calculate_data_age())
@@ -116,6 +118,7 @@ class Experiment:
                     (load_edge, load_cloud) = alg.calculate_load()
                     self.result[(algorithm, load, 4)].append(load_edge)
                     self.result[(algorithm, load, 5)].append(load_cloud)
+                    self.result_load[(algorithm, load)].append(alg.calculate_load_per_node())
 
                     self.progress((current + 1) / total, algorithm)
 
@@ -246,6 +249,39 @@ class Experiment:
                         pass
                 adjusted_width = max_length + 2
                 ws.column_dimensions[column[0].column_letter].width = adjusted_width
+
+        # Save node level load in edges
+        ws = self.create_sheet(self.wb, "Load Edges")
+        row = 1
+        chart_header_1 = ws.cell(row=row, column=1, value="Average data for chart")
+        chart_header_1.font = header_font
+        row += 1
+
+        for l in range(len(self.loads)):
+            for n in range(len(self.network.nodes)):
+                col = l * len(self.network.nodes) + n + 2
+                node_type = "Edge" if self.network.nodes[n].node_type == NodeType.Edge else "Cloud"
+                ws.cell(row=row, column=col, value=node_type)
+                ws.cell(row=row + 1, column=col, value=self.loads[l])
+                ws.cell(row=row + 2, column=col, value=n + 1)
+
+        row += 2
+        ws.cell(row=row, column=1, value="Algorithms")
+        row += 1
+
+        for algorithm in self.algorithms:
+            ws.cell(row=row, column=1, value=algorithm)
+
+            for l in range(len(self.loads)):
+                for n in range(len(self.network.nodes)):
+                    col = l * len(self.network.nodes) + n + 2
+                    total = 0
+                    for i in range(self.iteration):
+                        total += self.result_load.get((algorithm, self.loads[l]))[i][n]
+                    ws.cell(row=row, column=col, value=total / len(self.network.nodes))
+
+            row += 1
+
 
         self.wb.save(self.output)
 
