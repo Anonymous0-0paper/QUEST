@@ -13,6 +13,8 @@ class Algorithm:
         self.network = network
         self.dag = dag
         self.assign: dict[int, int] = {}
+        self.frequencies: dict[int, float] = {}
+
         self.total_latency = 0
 
     def clear(self):
@@ -35,7 +37,8 @@ class Algorithm:
                 subtask: SubTaskModel = queue.get()
                 if subtask.total_data_needed == 0:
                     node = self.network.nodes[self.assign[subtask.id]]
-                    self.schedule(subtask, node)
+                    frequency = self.frequencies.get(subtask.id, None)
+                    self.schedule(subtask, node, frequency)
                     self.send_data(subtask)
                 else:
                     backup_queue.put(subtask)
@@ -43,7 +46,7 @@ class Algorithm:
                 queue.put(backup_queue.get())
 
     @staticmethod
-    def schedule(subtask: SubTaskModel, node: Node):
+    def schedule(subtask: SubTaskModel, node: Node, frequency: float = None):
 
         candidate_core_index = 0
         candidate_core_idle_time = math.inf
@@ -59,7 +62,7 @@ class Algorithm:
 
         core = node.allocations[candidate_core_index]
         start_time = max(subtask.data_received_time, candidate_core_idle_time)
-        finish_time = start_time + node.get_execution_time(subtask.execution_cost)
+        finish_time = start_time + node.get_execution_time(subtask.execution_cost, frequency)
         core.append([subtask.id, start_time, finish_time])
         subtask.execution = [node.index, start_time, finish_time]
 
@@ -82,15 +85,23 @@ class Algorithm:
         return makespan
 
     def calculate_energy(self):
-        energy_dynamic = 0
-        energy_static = 0
+        energy_dynamic = 0.0
+        energy_static = 0.0
         makespan = self.calculate_completion_time()
         for node in self.network.nodes:
             energy_static += node.static_power * makespan
             power_dif = (node.dynamic_power - node.static_power) / node.cores
             for core in node.allocations:
                 for item in core:
-                    energy_dynamic += power_dif * (item[2] - item[1])
+                    frequency = self.frequencies.get(item[0], None)
+                    if frequency is None:
+                        energy_dynamic += power_dif * (item[2] - item[1])
+                    else:
+                        max_frequency = node.frequencies[0]
+                        rate = frequency / max_frequency
+                        time = item[2] - item[1]
+                        energy_dynamic += power_dif * time * (rate ** 3)
+                        energy_static -= (node.static_power * time) * (1 - rate)
 
         return energy_dynamic + energy_static
 

@@ -52,10 +52,10 @@ class Fuzzy(Algorithm):
 
         if intensity <= self.edge_threshold * 1_000_000_000:
             available_nodes = [i for i, node in enumerate(self.network.nodes)
-                               if node.frequency < self.cloud_threshold]
+                               if node.frequencies[0] < self.cloud_threshold]
         else:
             available_nodes = [i for i, node in enumerate(self.network.nodes)
-                               if node.frequency >= self.cloud_threshold]
+                               if node.frequencies[0] >= self.cloud_threshold]
 
         if not available_nodes:
             available_nodes = list(range(len(self.network.nodes)))

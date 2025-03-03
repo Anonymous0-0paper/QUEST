@@ -5,6 +5,7 @@ from workflow.DAG import DAG
 from workflow.Models.CasaWind import CaseWind
 from workflow.Models.CyberShake import CyberShake
 from workflow.Models.Epigenomics import Epigenomics
+from workflow.Models.FullTopology import FullTopology
 from workflow.Models.Genome1000 import Genome1000
 from workflow.Models.Inspiral import Inspiral
 from workflow.Models.Montage import Montage
@@ -15,7 +16,7 @@ if __name__ == '__main__':
     total_count = int(os.environ.get('TOTAL_COUNT', 1))
 
     # DAG Type Arguments
-    dag_type = os.environ.get('DAG_TYPE', 'Random')  # Montage | CasaWind | Genome1000 | Random
+    dag_type = os.environ.get('DAG_TYPE', 'Random')
 
     dag_size: int = int(os.environ.get('DAG_SIZE', 20))
     dag_communication_min: int = int(os.environ.get('DAG_COMMUNICATION_MIN', 1))
@@ -31,7 +32,7 @@ if __name__ == '__main__':
         dag: DAG | None = None
         dag_type_selected = dag_type
         if dag_type_selected == "Random":
-            dag_type_selected = random.choice(['CasaWind', 'Genome1000', 'Montage'])
+            dag_type_selected = random.choice(['Montage', 'CaseWind', 'Genome1000', 'Inspiral', 'CyberShake', 'Epigenomics'])
 
         if dag_type_selected == 'Montage':
             dag = Montage.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
@@ -63,8 +64,12 @@ if __name__ == '__main__':
             dag = Epigenomics.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
                                            dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
                                            dag_communication_min, dag_communication_max)
+        else:
+            dag = FullTopology.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
+                                           dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
+                                           dag_communication_min, dag_communication_max)
 
-        DAG.store(dag, "Outputs/" + output_name + "/" + f"dag-{i + 1}.json")
+        DAG.store(dag, "tasks/" + output_name + "/" + f"dag-{i + 1}.json")
 
         if show_dag:
             dag.show(False)

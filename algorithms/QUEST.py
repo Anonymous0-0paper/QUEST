@@ -22,7 +22,7 @@ class QUEST(Algorithm):
     mutation, and interference to evolve a population of solutions.
     """
 
-    def __init__(self, network: Network, dag: DAGModel):
+    def __init__(self, network: Network, dag: DAGModel, dvfs: bool = True):
         """
         Initializes the QUEST algorithm with the given network and DAG model.
 
@@ -31,6 +31,7 @@ class QUEST(Algorithm):
             dag (DAGModel): The DAG model representing subtasks.
         """
         super().__init__(network, dag)
+        self.dvfs = dvfs
         self.population_size: int = 50
         self.max_iterations: int = 250
         self.mutation_rate: float = 0.1
@@ -103,11 +104,16 @@ class QUEST(Algorithm):
         if best_assignment is not None:
             self.assign = best_assignment
             logger.info("Best assignment found and set.")
+            super().run()
+
+            if self.dvfs == True:
+                # Apply TODVFS to optimize frequencies
+                self.apply_todvfs()
+                logger.info("TODVFS applied to optimize node frequencies.")
         else:
             logger.warning("No improvement found during QUEST run. Using last population's assignment.")
 
         logger.info("QUEST algorithm completed.")
-        super().run()
 
     def initialize_quantum_population(self) -> List[List[np.ndarray]]:
         """
@@ -682,3 +688,35 @@ class QUEST(Algorithm):
         )
         winner = tournament_sorted[0]
         return winner
+
+
+    def apply_todvfs(self):
+        energy_base = super().calculate_energy()
+        makespan_base = super().calculate_completion_time()
+
+        max_frequency_count = max([len(n.frequencies) for n in self.network.nodes])
+
+        for subtask in self.dag.subtasks:
+            node = self.network.nodes[self.assign[subtask.id]]
+            self.frequencies[subtask.id] = node.frequencies[0]
+
+        for frequency_index in range(1, max_frequency_count):
+            for subtask in self.dag.subtasks:
+                node = self.network.nodes[self.assign[subtask.id]]
+                if len(node.frequencies) > frequency_index:
+                    frequency = node.frequencies[frequency_index]
+                else:
+                    frequency = node.frequencies[-1]
+                pre_frequency = self.frequencies[subtask.id]
+                self.frequencies[subtask.id] = frequency
+
+                super().run()
+                energy = super().calculate_energy()
+                success = super().calculate_success()
+                makespan = super().calculate_completion_time()
+
+                if not success or energy > energy_base or makespan > makespan_base:
+                    self.frequencies[subtask.id] = pre_frequency
+                else:
+                    energy_base = energy
+                    logger.info(f"Frequency change applied from: {pre_frequency} to {frequency}")
