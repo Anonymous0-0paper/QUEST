@@ -8,7 +8,7 @@ class SubTask:
         self.dag_id = dag_id
         self.id: int = subtask_id
         self.execution_cost: int | None = None  # MI
-        self.memory: int | None = None
+        self.memory: int | None = None # GB
 
     @staticmethod
     def generate(dag_id: int, subtask_id: int, memory_min: int, memory_max: int,

@@ -713,9 +713,8 @@ class QUEST(Algorithm):
                 super().run()
                 energy = super().calculate_energy()
                 success = super().calculate_success()
-                makespan = super().calculate_completion_time()
 
-                if not success or energy > energy_base or makespan > makespan_base:
+                if not success or energy > energy_base:
                     self.frequencies[subtask.id] = pre_frequency
                 else:
                     energy_base = energy

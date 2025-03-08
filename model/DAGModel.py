@@ -4,7 +4,7 @@ from model.SubTaskModel import SubTaskModel
 class DAGModel:
     def __init__(self, subtasks: list[SubTaskModel], edges: list[list[int]], deadline: int):
         self.subtasks = subtasks
-        self.edges = edges  # [predecessor, successor, data size]
+        self.edges = edges  # [predecessor, successor, data size (GB)]
         self.deadline: int = deadline
 
     def clear(self):

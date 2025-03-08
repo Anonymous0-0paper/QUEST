@@ -18,6 +18,7 @@ class DAGMode(Enum):
     CyberShake = "CyberShake",
     Epigenomics = "Epigenomics",
     Inspiral = "Inspiral",
+    PegasusWorkflow = "PegasusWorkflow"
 
 
 class DAG:
@@ -26,7 +27,7 @@ class DAG:
         self.mode = mode
         self.id = id
         self.subtasks = subtasks
-        self.edges = edges  # [predecessor, successor, data size]
+        self.edges = edges  # [predecessor, successor, data size (GB)]
         self.deadline: int | None = None
 
     def add_dummy_entry(self):
@@ -65,13 +66,19 @@ class DAG:
             g.add_edge(edge[0], edge[1])
 
         levels = []
-        for i in range(len(self.subtasks)):
-            level = 0
-            for edge in self.edges:
-                if edge[1] == i:
-                    if level <= levels[edge[0]]:
-                        level = levels[edge[0]] + 1
-            levels.append(level)
+        end = False
+        while end is False:
+            for i in range(len(self.subtasks)):
+                level = 0
+                end = True
+                for edge in self.edges:
+                    if edge[1] == i:
+                        if len(levels) > edge[0]:
+                            if level <= levels[edge[0]]:
+                                level = levels[edge[0]] + 1
+                        else:
+                            end = False
+                levels.append(level)
 
         max_level = max(levels)
         levels_width = [0 for _ in range(max_level + 1)]

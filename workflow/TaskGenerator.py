@@ -2,6 +2,7 @@ import os
 import random
 
 from workflow.DAG import DAG
+from workflow.Models.Pegasus import Pegasus
 from workflow.Models.CasaWind import CaseWind
 from workflow.Models.CyberShake import CyberShake
 from workflow.Models.Epigenomics import Epigenomics
@@ -17,6 +18,8 @@ if __name__ == '__main__':
 
     # DAG Type Arguments
     dag_type = os.environ.get('DAG_TYPE', 'Random')
+    xml_path = os.environ.get('XML_PATH', "")
+    mips_base = int(os.environ.get('MIPS_BASE', 1000))
 
     dag_size: int = int(os.environ.get('DAG_SIZE', 20))
     dag_communication_min: int = int(os.environ.get('DAG_COMMUNICATION_MIN', 1))
@@ -31,43 +34,48 @@ if __name__ == '__main__':
     for i in range(total_count):
         dag: DAG | None = None
         dag_type_selected = dag_type
-        if dag_type_selected == "Random":
-            dag_type_selected = random.choice(['Montage', 'CaseWind', 'Genome1000', 'Inspiral', 'CyberShake', 'Epigenomics'])
 
-        if dag_type_selected == 'Montage':
-            dag = Montage.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
-                                       dag_computation_min, dag_computation_max,
-                                       dag_deadline_min, dag_deadline_max,
-                                       dag_communication_min, dag_communication_max)
+        if dag_type_selected == "Pegasus":
+            dag = Pegasus.generate_dag(0, xml_path, dag_deadline_min, dag_deadline_max, mips_base)
 
-        elif dag_type_selected == 'CaseWind':
-            dag = CaseWind.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
-                                        dag_computation_min, dag_computation_max,
-                                        dag_deadline_min, dag_deadline_max,
-                                        dag_communication_min, dag_communication_max)
-        elif dag_type_selected == 'Genome1000':
-            dag = Genome1000.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
-                                          dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
-                                          dag_communication_min, dag_communication_max)
-
-        elif dag_type_selected == 'Inspiral':
-            dag = Inspiral.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
-                                        dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
-                                        dag_communication_min, dag_communication_max)
-
-        elif dag_type_selected == 'CyberShake':
-            dag = CyberShake.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
-                                          dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
-                                          dag_communication_min, dag_communication_max)
-
-        elif dag_type_selected == 'Epigenomics':
-            dag = Epigenomics.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
-                                           dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
-                                           dag_communication_min, dag_communication_max)
         else:
-            dag = FullTopology.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
-                                           dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
+            if dag_type_selected == "Random":
+                dag_type_selected = random.choice(['Montage', 'CaseWind', 'Genome1000', 'Inspiral', 'CyberShake', 'Epigenomics'])
+
+            elif dag_type_selected == 'Montage':
+                dag = Montage.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
+                                           dag_computation_min, dag_computation_max,
+                                           dag_deadline_min, dag_deadline_max,
                                            dag_communication_min, dag_communication_max)
+
+            elif dag_type_selected == 'CaseWind':
+                dag = CaseWind.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
+                                            dag_computation_min, dag_computation_max,
+                                            dag_deadline_min, dag_deadline_max,
+                                            dag_communication_min, dag_communication_max)
+            elif dag_type_selected == 'Genome1000':
+                dag = Genome1000.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
+                                              dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
+                                              dag_communication_min, dag_communication_max)
+
+            elif dag_type_selected == 'Inspiral':
+                dag = Inspiral.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
+                                            dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
+                                            dag_communication_min, dag_communication_max)
+
+            elif dag_type_selected == 'CyberShake':
+                dag = CyberShake.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
+                                              dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
+                                              dag_communication_min, dag_communication_max)
+
+            elif dag_type_selected == 'Epigenomics':
+                dag = Epigenomics.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
+                                               dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
+                                               dag_communication_min, dag_communication_max)
+            else:
+                dag = FullTopology.generate_dag(0, dag_size, dag_memory_min, dag_memory_max,
+                                               dag_computation_min, dag_computation_max, dag_deadline_min, dag_deadline_max,
+                                               dag_communication_min, dag_communication_max)
 
         DAG.store(dag, "tasks/" + output_name + "/" + f"dag-{i + 1}.json")
 
