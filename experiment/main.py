@@ -1,3 +1,54 @@
+# import configparser
+# import os
+# import subprocess
+# import sys
+#
+# from experiment.Experiment import Experiment
+#
+# if __name__ == '__main__':
+#     task_generator = '../workflow/TaskGenerator.py'
+#
+#     # Create the ConfigParser and preserve key case
+#     config = configparser.ConfigParser()
+#     config.optionxform = str  # Preserve keys as they are (do not lowercase them)
+#
+#     # Define the configuration file path
+#     config_file_path = '/home/user/PycharmProjects/QUESTnew/experiment/montage/config.ini'
+#
+#     # Read the configuration file
+#     files_read = config.read(config_file_path)
+#     if not files_read:
+#         raise FileNotFoundError(f"Configuration file not found: {config_file_path}")
+#
+#     # Now the sections should be available.
+#     output = config.get('Main', 'output')
+#     algorithms = [algo.strip() for algo in config.get('Main', 'algorithms').split(",")]
+#     iteration = int(config.get('Main', 'iteration'))
+#
+#     env_vars = os.environ.copy()
+#     dag_files = {}
+#     loads = [int(l) for l in config.get('Workload', 'loads').split(",")]
+#
+#     for load in loads:
+#         workload_config = config[f'Workload-{load}']
+#         # Update environment variables with workload settings (preserving key case)
+#         for key, value in workload_config.items():
+#             env_vars[key.upper()] = value
+#
+#         try:
+#             subprocess.run([sys.executable, task_generator], env=env_vars, check=True)
+#         except subprocess.SubprocessError as se:
+#             raise Exception(f"Error running the main script: {se}")
+#
+#         count = int(workload_config["TOTAL_COUNT"])
+#         name = workload_config["OUTPUT_NAME"]
+#         dag_files[load] = [f"./tasks/{name}/dag-{i + 1}.json" for i in range(count)]
+#
+#     exp = Experiment(algorithms, loads, dag_files, iteration, output)
+#     exp.run()
+#     exp.store()
+
+
 import os
 import sys
 import subprocess
@@ -69,7 +120,7 @@ def process_ini_file(ini_file):
 
 if __name__ == '__main__':
     # Define the directory where your INI files are located.
-    ini_dir = ""  # Change this path as needed.
+    ini_dir = "/home/user/PycharmProjects/QUESTnew/experiment/montage"  # Change this path as needed.
     ini_files = glob.glob(os.path.join(ini_dir, "*.ini"))
 
     if not ini_files:
