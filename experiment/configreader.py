@@ -690,7 +690,7 @@ if __name__ == "__main__":
 
     try:
         # Create an instance of ConfigModifier with the path to your config file
-        config_path = "config.ini"  # Update this to the actual path of your config file
+        config_path = "confiwg.ini"  # Update this to the actual path of your config file
         modifier = ConfigModifier(config_path)
 
         # Print current node and DAG information
