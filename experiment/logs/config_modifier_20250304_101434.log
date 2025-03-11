@@ -1,0 +1,13 @@
+2025-03-04 10:14:34,904 - ConfigModifier - INFO - Successfully loaded configuration from config.ini
+2025-03-04 10:14:34,904 - ConfigModifier - INFO - Created backup at backups/config_20250304_101434.bak
+2025-03-04 10:14:34,904 - ConfigModifier - INFO - Updated lyon edge count to 10
+2025-03-04 10:14:34,904 - ConfigModifier - INFO - Updated toulouse cloud count to 3
+2025-03-04 10:14:34,904 - ConfigModifier - INFO - Updated Workload-1 DAG_SIZE to 75
+2025-03-04 10:14:34,904 - ConfigModifier - INFO - Created configuration template at templates/base_config.ini
+2025-03-04 10:14:34,905 - ConfigModifier - INFO - Generated configuration from template at generated_config.ini
+2025-03-04 10:14:34,905 - ConfigModifier - INFO - Exported configuration to JSON at config_20250304_101434.json
+2025-03-04 10:14:34,905 - ConfigModifier - INFO - Configuration saved to modified_config.ini
+2025-03-04 10:14:34,905 - ConfigModifier - INFO - Output Excel file already exists at ../result-sample-1.xlsx
+2025-03-04 10:14:34,905 - ConfigModifier - INFO - Created workload directory at ../sample-1
+2025-03-04 10:14:34,905 - ConfigModifier - INFO - Created workload directory at ../sample-2
+2025-03-04 10:14:34,905 - ConfigModifier - INFO - Created workload directory at ../sample-3
