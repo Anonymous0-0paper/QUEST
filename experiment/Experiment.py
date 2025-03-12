@@ -28,12 +28,13 @@ from network.Node import NodeType
 class Experiment:
 
     def __init__(self, algorithms: list[str], loads: list[int], dag_files: dict[int, list[str]], iteration: int,
-                 output: str):
+                 output: str,path):
         self.algorithms = algorithms
         self.loads = loads
         self.dag_files = dag_files
         self.iteration = iteration
         self.output = output
+        self.path=path
 
 
         # key: (algorithm, load, metric_index)
@@ -44,7 +45,7 @@ class Experiment:
         self.execution_times = []  # To store execution times
         self.peak_cpu_data = []    # To store peak CPU usage
         self.wb = load_workbook(self.output)
-        self.network = Network.generate()
+        self.network = Network.generate(path=self.path)
 
     def run(self):
         total = len(self.loads) * len(self.algorithms) * self.iteration

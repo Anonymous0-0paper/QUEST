@@ -48,7 +48,6 @@
 #     exp.run()
 #     exp.store()
 
-
 import os
 import sys
 import subprocess
@@ -61,13 +60,14 @@ def process_ini_file(ini_file):
     """Process a single INI configuration file."""
     print(f"Processing configuration: {ini_file}")
 
-    # Load the configuration file.
+    # Load the configuration file and preserve key case.
     config = configparser.ConfigParser()
+    config.optionxform = str  # Do not convert keys to lowercase.
     config.read(ini_file)
 
     try:
         output = config['Main']['output']
-        algorithms = config['Main']['algorithms'].split(",")
+        algorithms = [algo.strip() for algo in config['Main']['algorithms'].split(",")]
         iteration = int(config['Main']['iteration'])
     except KeyError as e:
         raise Exception(f"Missing key in [Main] section in {ini_file}: {e}")
@@ -110,7 +110,7 @@ def process_ini_file(ini_file):
 
     # Create and run the experiment.
     try:
-        exp = Experiment(algorithms, loads, dag_files, iteration, output)
+        exp = Experiment(algorithms, loads, dag_files, iteration, output,ini_file)
         exp.run()
         exp.store()
     except Exception as e:
@@ -118,23 +118,46 @@ def process_ini_file(ini_file):
 
     return f"Finished processing configuration: {ini_file}"
 
-if __name__ == '__main__':
-    # Define the directory where your INI files are located.
-    ini_dir = "/home/user/PycharmProjects/QUESTnew/experiment/montage"  # Change this path as needed.
+def process_directory(ini_dir):
+    """Process all INI files in a given directory with up to 3 workers concurrently."""
+    print(f"Processing directory: {ini_dir}")
     ini_files = glob.glob(os.path.join(ini_dir, "*.ini"))
 
     if not ini_files:
-        print("No INI configuration files found in the directory.")
-        sys.exit(1)
+        print(f"No INI configuration files found in {ini_dir}.")
+        return []
 
-    # Use up to 3 workers concurrently.
-    max_workers = min(3, len(ini_files))
-    with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers) as executor:
+    results = []
+    # Create a ProcessPoolExecutor with 3 workers for this directory.
+    with concurrent.futures.ProcessPoolExecutor(max_workers=3) as executor:
         future_to_ini = {executor.submit(process_ini_file, ini_file): ini_file for ini_file in ini_files}
         for future in concurrent.futures.as_completed(future_to_ini):
             ini_file = future_to_ini[future]
             try:
                 result = future.result()
                 print(result)
+                results.append(result)
             except Exception as exc:
                 print(f"{ini_file} generated an exception: {exc}")
+    return results
+
+if __name__ == '__main__':
+    # List of directories containing INI files.
+    ini_dirs = [
+        # "/home/user/PycharmProjects/QUESTnew/experiment/montage",
+        # "/home/user/PycharmProjects/QUESTnew/experiment/inspiral",
+        # "/home/user/PycharmProjects/QUESTnew/experiment/cyber",
+        "/home/user/PycharmProjects/QUESTnew/experiment/epigenomics"
+    ]
+
+    # Process each directory concurrently.
+    # Using a ThreadPoolExecutor here since each directory spawns its own ProcessPoolExecutor.
+    with concurrent.futures.ThreadPoolExecutor(max_workers=len(ini_dirs)) as dir_executor:
+        futures = {dir_executor.submit(process_directory, ini_dir): ini_dir for ini_dir in ini_dirs}
+        for future in concurrent.futures.as_completed(futures):
+            ini_dir = futures[future]
+            try:
+                _ = future.result()
+                print(f"Finished processing directory: {ini_dir}")
+            except Exception as exc:
+                print(f"{ini_dir} generated an exception: {exc}")

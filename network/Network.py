@@ -12,9 +12,9 @@ class Network:
         self.connections = connections
 
     @staticmethod
-    def generate():
+    def generate(path):
         config = configparser.ConfigParser()
-        config.read('config.ini')
+        config.read(path)
         regions = [region.strip() for region in config['Regions']['region_names'].split(',')]
         connections = {}
 
@@ -47,6 +47,7 @@ class Network:
             for node_type in node_types:
                 type_lower = node_type.lower()
                 count_key = f'{region_lower}_{type_lower}_count'
+                # print(count_key)
                 node_count = int(config['Nodes'][count_key])
 
                 node_type_enum = getattr(NodeType, node_type)
