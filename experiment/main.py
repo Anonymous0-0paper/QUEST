@@ -147,7 +147,8 @@ if __name__ == '__main__':
         # "/home/user/PycharmProjects/QUESTnew/experiment/montage",
         # "/home/user/PycharmProjects/QUESTnew/experiment/inspiral",
         # "/home/user/PycharmProjects/QUESTnew/experiment/cyber",
-        "/home/user/PycharmProjects/QUESTnew/experiment/epigenomics"
+        # "/home/user/PycharmProjects/QUESTnew/experiment/epigenomics",
+        "/home/user/PycharmProjects/QUESTnew/experiment/alibabaCluster"
     ]
 
     # Process each directory concurrently.

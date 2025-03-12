@@ -1,6 +1,6 @@
 {
     "id": 0,
-    "mode": "Genome1000",
+    "mode": "Epigenomics",
     "subtasks": [
         {
             "id": 0,
@@ -9,1491 +9,1021 @@
         },
         {
             "id": 1,
-            "executionCost": 8356,
-            "memory": 73242
+            "executionCost": 8109,
+            "memory": 60984
         },
         {
             "id": 2,
-            "executionCost": 9211,
-            "memory": 96839
+            "executionCost": 6822,
+            "memory": 26713
         },
         {
             "id": 3,
-            "executionCost": 5885,
-            "memory": 26796
+            "executionCost": 6527,
+            "memory": 23401
         },
         {
             "id": 4,
-            "executionCost": 6079,
-            "memory": 47479
+            "executionCost": 1624,
+            "memory": 73014
         },
         {
             "id": 5,
-            "executionCost": 4436,
-            "memory": 38437
+            "executionCost": 7765,
+            "memory": 31930
         },
         {
             "id": 6,
-            "executionCost": 8037,
-            "memory": 61670
+            "executionCost": 4393,
+            "memory": 58878
         },
         {
             "id": 7,
-            "executionCost": 4409,
-            "memory": 89664
+            "executionCost": 4422,
+            "memory": 95965
         },
         {
             "id": 8,
-            "executionCost": 4318,
-            "memory": 21571
+            "executionCost": 7032,
+            "memory": 33521
         },
         {
             "id": 9,
-            "executionCost": 4773,
-            "memory": 84076
+            "executionCost": 9984,
+            "memory": 85293
         },
         {
             "id": 10,
-            "executionCost": 5963,
-            "memory": 99001
+            "executionCost": 1481,
+            "memory": 45709
         },
         {
             "id": 11,
-            "executionCost": 8356,
-            "memory": 76930
+            "executionCost": 8339,
+            "memory": 72070
         },
         {
             "id": 12,
-            "executionCost": 5074,
-            "memory": 46476
+            "executionCost": 8477,
+            "memory": 81680
         },
         {
             "id": 13,
-            "executionCost": 8370,
-            "memory": 47515
+            "executionCost": 8390,
+            "memory": 69121
         },
         {
             "id": 14,
-            "executionCost": 4150,
-            "memory": 57662
+            "executionCost": 3273,
+            "memory": 73772
         },
         {
             "id": 15,
-            "executionCost": 8305,
-            "memory": 73211
+            "executionCost": 2670,
+            "memory": 90891
         },
         {
             "id": 16,
-            "executionCost": 9782,
-            "memory": 40447
+            "executionCost": 6868,
+            "memory": 23737
         },
         {
             "id": 17,
-            "executionCost": 7349,
-            "memory": 59197
+            "executionCost": 8942,
+            "memory": 94898
         },
         {
             "id": 18,
-            "executionCost": 3208,
-            "memory": 75805
+            "executionCost": 2052,
+            "memory": 88910
         },
         {
             "id": 19,
-            "executionCost": 2209,
-            "memory": 63022
+            "executionCost": 8790,
+            "memory": 82421
         },
         {
             "id": 20,
-            "executionCost": 6010,
-            "memory": 91498
+            "executionCost": 8931,
+            "memory": 59864
         },
         {
             "id": 21,
-            "executionCost": 2142,
-            "memory": 20202
+            "executionCost": 4858,
+            "memory": 24469
         },
         {
             "id": 22,
-            "executionCost": 1007,
-            "memory": 56672
+            "executionCost": 3506,
+            "memory": 54923
         },
         {
             "id": 23,
-            "executionCost": 7991,
-            "memory": 29921
+            "executionCost": 9914,
+            "memory": 35629
         },
         {
             "id": 24,
-            "executionCost": 3395,
-            "memory": 77709
+            "executionCost": 9764,
+            "memory": 71860
         },
         {
             "id": 25,
-            "executionCost": 8623,
-            "memory": 43513
+            "executionCost": 3561,
+            "memory": 43492
         },
         {
             "id": 26,
-            "executionCost": 5120,
-            "memory": 33652
+            "executionCost": 4165,
+            "memory": 99476
         },
         {
             "id": 27,
-            "executionCost": 6678,
-            "memory": 90429
+            "executionCost": 9959,
+            "memory": 33561
         },
         {
             "id": 28,
-            "executionCost": 6344,
-            "memory": 45116
+            "executionCost": 3450,
+            "memory": 46228
         },
         {
             "id": 29,
-            "executionCost": 1094,
-            "memory": 51385
+            "executionCost": 2229,
+            "memory": 59879
         },
         {
             "id": 30,
-            "executionCost": 8450,
-            "memory": 78431
+            "executionCost": 9587,
+            "memory": 53440
         },
         {
             "id": 31,
-            "executionCost": 6902,
-            "memory": 80725
+            "executionCost": 2774,
+            "memory": 97690
         },
         {
             "id": 32,
-            "executionCost": 2072,
-            "memory": 86862
+            "executionCost": 1792,
+            "memory": 98603
         },
         {
             "id": 33,
-            "executionCost": 1835,
-            "memory": 39882
+            "executionCost": 9757,
+            "memory": 26694
         },
         {
             "id": 34,
-            "executionCost": 5424,
-            "memory": 47742
+            "executionCost": 7878,
+            "memory": 64594
         },
         {
             "id": 35,
-            "executionCost": 4419,
-            "memory": 27568
+            "executionCost": 7786,
+            "memory": 87495
         },
         {
             "id": 36,
-            "executionCost": 6466,
-            "memory": 28109
+            "executionCost": 7930,
+            "memory": 40646
         },
         {
             "id": 37,
-            "executionCost": 1168,
-            "memory": 62835
+            "executionCost": 1447,
+            "memory": 91221
         },
         {
             "id": 38,
-            "executionCost": 5573,
-            "memory": 88394
+            "executionCost": 8993,
+            "memory": 86272
         },
         {
             "id": 39,
-            "executionCost": 1098,
-            "memory": 83030
+            "executionCost": 7963,
+            "memory": 91727
         },
         {
             "id": 40,
-            "executionCost": 1087,
-            "memory": 84529
+            "executionCost": 4399,
+            "memory": 96019
         },
         {
             "id": 41,
-            "executionCost": 6858,
-            "memory": 33213
+            "executionCost": 1164,
+            "memory": 53587
         },
         {
             "id": 42,
-            "executionCost": 6827,
-            "memory": 76102
+            "executionCost": 6161,
+            "memory": 68007
         },
         {
             "id": 43,
-            "executionCost": 1726,
-            "memory": 71463
+            "executionCost": 4114,
+            "memory": 35832
         },
         {
             "id": 44,
-            "executionCost": 1950,
-            "memory": 47370
+            "executionCost": 7303,
+            "memory": 88417
         },
         {
             "id": 45,
-            "executionCost": 7740,
-            "memory": 99119
+            "executionCost": 7288,
+            "memory": 20511
         },
         {
             "id": 46,
-            "executionCost": 8598,
-            "memory": 55018
+            "executionCost": 2065,
+            "memory": 56925
         },
         {
             "id": 47,
-            "executionCost": 2073,
-            "memory": 64367
+            "executionCost": 2652,
+            "memory": 94692
         },
         {
             "id": 48,
-            "executionCost": 9634,
-            "memory": 86435
+            "executionCost": 3464,
+            "memory": 98858
         },
         {
             "id": 49,
-            "executionCost": 7178,
-            "memory": 79178
+            "executionCost": 3708,
+            "memory": 51775
         },
         {
             "id": 50,
-            "executionCost": 8510,
-            "memory": 98040
+            "executionCost": 9494,
+            "memory": 66514
         },
         {
             "id": 51,
-            "executionCost": 3909,
-            "memory": 44391
+            "executionCost": 2060,
+            "memory": 73453
         },
         {
             "id": 52,
-            "executionCost": 5413,
-            "memory": 99876
+            "executionCost": 2424,
+            "memory": 23042
         },
         {
             "id": 53,
-            "executionCost": 5897,
-            "memory": 71228
+            "executionCost": 1172,
+            "memory": 95299
         },
         {
             "id": 54,
-            "executionCost": 8147,
-            "memory": 78283
+            "executionCost": 2230,
+            "memory": 29787
         },
         {
             "id": 55,
-            "executionCost": 2382,
-            "memory": 89418
+            "executionCost": 6120,
+            "memory": 47315
         },
         {
             "id": 56,
-            "executionCost": 4620,
-            "memory": 24770
+            "executionCost": 7268,
+            "memory": 59700
         },
         {
             "id": 57,
-            "executionCost": 8070,
-            "memory": 74045
+            "executionCost": 2819,
+            "memory": 37542
         },
         {
             "id": 58,
-            "executionCost": 1611,
-            "memory": 30637
+            "executionCost": 7221,
+            "memory": 59491
         },
         {
             "id": 59,
-            "executionCost": 9730,
-            "memory": 45419
+            "executionCost": 4387,
+            "memory": 93538
         },
         {
             "id": 60,
-            "executionCost": 1700,
-            "memory": 83755
+            "executionCost": 2840,
+            "memory": 90871
         },
         {
             "id": 61,
-            "executionCost": 7411,
-            "memory": 90895
+            "executionCost": 8960,
+            "memory": 26445
         },
         {
             "id": 62,
-            "executionCost": 7224,
-            "memory": 76241
+            "executionCost": 7483,
+            "memory": 99138
         },
         {
             "id": 63,
-            "executionCost": 8783,
-            "memory": 41666
+            "executionCost": 8153,
+            "memory": 92673
         },
         {
             "id": 64,
-            "executionCost": 4964,
-            "memory": 21634
+            "executionCost": 2253,
+            "memory": 52896
         },
         {
             "id": 65,
-            "executionCost": 3808,
-            "memory": 62202
+            "executionCost": 4003,
+            "memory": 88927
         },
         {
             "id": 66,
-            "executionCost": 4874,
-            "memory": 78453
+            "executionCost": 2837,
+            "memory": 73239
         },
         {
             "id": 67,
-            "executionCost": 5933,
-            "memory": 26487
+            "executionCost": 2277,
+            "memory": 79758
         },
         {
             "id": 68,
-            "executionCost": 6418,
-            "memory": 67757
+            "executionCost": 6515,
+            "memory": 40749
         },
         {
             "id": 69,
-            "executionCost": 1634,
-            "memory": 42864
+            "executionCost": 6873,
+            "memory": 37677
         },
         {
             "id": 70,
-            "executionCost": 1699,
-            "memory": 56460
+            "executionCost": 1162,
+            "memory": 36981
         },
         {
             "id": 71,
-            "executionCost": 3100,
-            "memory": 36581
+            "executionCost": 5320,
+            "memory": 97574
         },
         {
             "id": 72,
-            "executionCost": 9965,
-            "memory": 22919
+            "executionCost": 1397,
+            "memory": 91123
         },
         {
             "id": 73,
-            "executionCost": 2332,
-            "memory": 65784
+            "executionCost": 7055,
+            "memory": 77038
         },
         {
             "id": 74,
-            "executionCost": 3936,
-            "memory": 55423
+            "executionCost": 2042,
+            "memory": 29491
         },
         {
             "id": 75,
-            "executionCost": 8635,
-            "memory": 78416
+            "executionCost": 1667,
+            "memory": 57657
         },
         {
             "id": 76,
-            "executionCost": 8613,
-            "memory": 95956
+            "executionCost": 4241,
+            "memory": 72088
         },
         {
             "id": 77,
-            "executionCost": 4715,
-            "memory": 89731
+            "executionCost": 9397,
+            "memory": 41772
         },
         {
             "id": 78,
-            "executionCost": 2915,
-            "memory": 83097
+            "executionCost": 6255,
+            "memory": 32830
         },
         {
             "id": 79,
-            "executionCost": 7381,
-            "memory": 38588
+            "executionCost": 7887,
+            "memory": 45107
         },
         {
             "id": 80,
-            "executionCost": 1596,
-            "memory": 23412
+            "executionCost": 8066,
+            "memory": 91550
         },
         {
             "id": 81,
-            "executionCost": 6998,
-            "memory": 73998
+            "executionCost": 7925,
+            "memory": 39294
         },
         {
             "id": 82,
-            "executionCost": 3019,
-            "memory": 66697
+            "executionCost": 6578,
+            "memory": 84984
         },
         {
             "id": 83,
-            "executionCost": 6966,
-            "memory": 99557
+            "executionCost": 8548,
+            "memory": 97099
         },
         {
             "id": 84,
-            "executionCost": 1998,
-            "memory": 36917
+            "executionCost": 7957,
+            "memory": 72383
         },
         {
             "id": 85,
-            "executionCost": 2661,
-            "memory": 52911
+            "executionCost": 9567,
+            "memory": 91786
         },
         {
             "id": 86,
-            "executionCost": 3199,
-            "memory": 56626
+            "executionCost": 4821,
+            "memory": 83301
         },
         {
             "id": 87,
-            "executionCost": 2768,
-            "memory": 67375
+            "executionCost": 1943,
+            "memory": 92610
         },
         {
             "id": 88,
-            "executionCost": 6815,
-            "memory": 38822
+            "executionCost": 9240,
+            "memory": 63102
         },
         {
             "id": 89,
-            "executionCost": 9088,
-            "memory": 42617
+            "executionCost": 4624,
+            "memory": 70490
         },
         {
             "id": 90,
-            "executionCost": 3128,
-            "memory": 69945
+            "executionCost": 1799,
+            "memory": 96922
         },
         {
             "id": 91,
-            "executionCost": 2101,
-            "memory": 64839
+            "executionCost": 1364,
+            "memory": 71940
         },
         {
             "id": 92,
-            "executionCost": 5335,
-            "memory": 72579
+            "executionCost": 2834,
+            "memory": 83444
         },
         {
             "id": 93,
-            "executionCost": 2094,
-            "memory": 26570
+            "executionCost": 7234,
+            "memory": 34040
         },
         {
             "id": 94,
-            "executionCost": 5009,
-            "memory": 29672
+            "executionCost": 9362,
+            "memory": 82214
         },
         {
             "id": 95,
-            "executionCost": 8897,
-            "memory": 51990
+            "executionCost": 8311,
+            "memory": 66627
         },
         {
             "id": 96,
-            "executionCost": 7311,
-            "memory": 95612
+            "executionCost": 8395,
+            "memory": 63139
         },
         {
             "id": 97,
-            "executionCost": 7799,
-            "memory": 59914
+            "executionCost": 6361,
+            "memory": 83624
         },
         {
             "id": 98,
-            "executionCost": 5290,
-            "memory": 48881
+            "executionCost": 8350,
+            "memory": 27696
         },
         {
             "id": 99,
-            "executionCost": 7920,
-            "memory": 75268
+            "executionCost": 3545,
+            "memory": 51594
         },
         {
             "id": 100,
-            "executionCost": 5205,
-            "memory": 33746
+            "executionCost": 4241,
+            "memory": 32071
         }
     ],
     "edges": [
         [
             0,
-            34,
-            827
+            99,
+            861
         ],
         [
             0,
-            32,
-            686
-        ],
-        [
-            0,
-            31,
-            773
-        ],
-        [
-            0,
-            30,
-            402
-        ],
-        [
-            0,
-            29,
-            368
-        ],
-        [
-            0,
-            28,
-            335
-        ],
-        [
-            0,
-            27,
-            681
-        ],
-        [
-            0,
-            26,
-            656
-        ],
-        [
-            0,
-            25,
-            813
-        ],
-        [
-            0,
-            24,
-            832
-        ],
-        [
-            0,
-            23,
-            530
-        ],
-        [
-            0,
-            22,
-            960
-        ],
-        [
-            0,
-            21,
-            992
-        ],
-        [
-            0,
-            20,
-            381
-        ],
-        [
-            0,
-            19,
-            626
-        ],
-        [
-            0,
-            18,
-            603
-        ],
-        [
-            0,
-            17,
-            428
-        ],
-        [
-            0,
-            16,
-            541
-        ],
-        [
-            0,
-            15,
-            575
-        ],
-        [
-            0,
-            14,
-            648
-        ],
-        [
-            0,
-            13,
-            344
-        ],
-        [
-            0,
-            12,
-            874
-        ],
-        [
-            0,
-            11,
-            906
-        ],
-        [
-            0,
-            10,
-            387
-        ],
-        [
-            0,
-            9,
-            683
-        ],
-        [
-            0,
-            8,
-            916
-        ],
-        [
-            0,
-            7,
-            883
-        ],
-        [
-            0,
-            6,
-            538
-        ],
-        [
-            0,
-            5,
-            579
-        ],
-        [
-            0,
-            4,
-            523
-        ],
-        [
-            0,
-            3,
-            914
-        ],
-        [
-            0,
-            2,
-            144
+            98,
+            351
         ],
         [
             0,
             1,
-            271
+            135
         ],
         [
             1,
-            33,
-            830
+            2,
+            235
         ],
         [
             2,
-            33,
-            733
+            3,
+            502
         ],
         [
             3,
-            33,
-            315
+            4,
+            822
         ],
         [
             4,
-            33,
-            202
+            5,
+            824
         ],
         [
             5,
-            33,
-            512
+            6,
+            919
         ],
         [
             6,
-            33,
-            731
+            7,
+            451
         ],
         [
             7,
-            33,
-            776
+            8,
+            901
         ],
         [
             8,
-            33,
-            812
+            9,
+            598
         ],
         [
             9,
-            33,
-            851
-        ],
-        [
             10,
-            33,
-            467
-        ],
-        [
-            11,
-            33,
-            351
-        ],
-        [
-            12,
-            33,
-            834
-        ],
-        [
-            13,
-            33,
-            530
-        ],
-        [
-            14,
-            33,
-            158
-        ],
-        [
-            15,
-            33,
-            759
-        ],
-        [
-            16,
-            33,
-            258
-        ],
-        [
-            17,
-            33,
-            544
-        ],
-        [
-            18,
-            33,
-            351
-        ],
-        [
-            19,
-            33,
-            495
-        ],
-        [
-            20,
-            33,
-            702
-        ],
-        [
-            21,
-            33,
-            254
-        ],
-        [
-            22,
-            33,
-            688
-        ],
-        [
-            23,
-            33,
             912
         ],
         [
+            10,
+            11,
+            350
+        ],
+        [
+            11,
+            12,
+            741
+        ],
+        [
+            12,
+            13,
+            164
+        ],
+        [
+            13,
+            14,
+            988
+        ],
+        [
+            14,
+            15,
+            206
+        ],
+        [
+            15,
+            16,
+            133
+        ],
+        [
+            16,
+            17,
+            151
+        ],
+        [
+            17,
+            18,
+            796
+        ],
+        [
+            18,
+            19,
+            908
+        ],
+        [
+            19,
+            20,
+            545
+        ],
+        [
+            20,
+            21,
+            387
+        ],
+        [
+            21,
+            22,
+            636
+        ],
+        [
+            22,
+            23,
+            155
+        ],
+        [
+            23,
             24,
-            33,
-            443
+            915
+        ],
+        [
+            24,
+            25,
+            530
         ],
         [
             25,
-            33,
-            972
+            100,
+            489
+        ],
+        [
+            1,
+            26,
+            375
         ],
         [
             26,
-            33,
-            431
+            27,
+            914
         ],
         [
             27,
-            33,
-            575
+            28,
+            419
         ],
         [
             28,
-            33,
-            274
+            29,
+            784
         ],
         [
             29,
-            33,
-            739
+            30,
+            796
         ],
         [
             30,
-            33,
-            322
+            31,
+            105
         ],
         [
             31,
-            33,
-            296
+            32,
+            951
         ],
         [
             32,
             33,
-            753
-        ],
-        [
-            33,
-            35,
-            593
-        ],
-        [
-            34,
-            35,
-            698
-        ],
-        [
-            33,
-            36,
-            561
-        ],
-        [
-            34,
-            36,
-            754
-        ],
-        [
-            33,
-            37,
-            287
-        ],
-        [
-            34,
-            37,
-            292
-        ],
-        [
-            33,
-            38,
-            101
-        ],
-        [
-            34,
-            38,
-            888
-        ],
-        [
-            33,
-            39,
-            899
-        ],
-        [
-            34,
-            39,
-            153
-        ],
-        [
-            33,
-            40,
-            520
-        ],
-        [
-            34,
-            40,
-            943
-        ],
-        [
-            33,
-            41,
-            628
-        ],
-        [
-            34,
-            41,
-            280
-        ],
-        [
-            33,
-            42,
-            591
-        ],
-        [
-            34,
-            42,
-            887
-        ],
-        [
-            33,
-            43,
-            523
-        ],
-        [
-            34,
-            43,
-            953
-        ],
-        [
-            33,
-            44,
-            929
-        ],
-        [
-            34,
-            44,
-            133
-        ],
-        [
-            33,
-            45,
-            666
-        ],
-        [
-            34,
-            45,
-            545
-        ],
-        [
-            33,
-            46,
-            225
-        ],
-        [
-            34,
-            46,
-            374
-        ],
-        [
-            33,
-            47,
-            760
-        ],
-        [
-            34,
-            47,
-            702
-        ],
-        [
-            33,
-            48,
-            143
-        ],
-        [
-            34,
-            48,
-            106
-        ],
-        [
-            33,
-            49,
-            458
-        ],
-        [
-            34,
-            49,
-            990
-        ],
-        [
-            33,
-            50,
-            313
-        ],
-        [
-            34,
-            50,
-            231
-        ],
-        [
-            33,
-            51,
-            953
-        ],
-        [
-            34,
-            51,
-            743
-        ],
-        [
-            33,
-            52,
-            184
-        ],
-        [
-            34,
-            52,
-            942
-        ],
-        [
-            33,
-            53,
-            696
-        ],
-        [
-            34,
-            53,
-            967
-        ],
-        [
-            33,
-            54,
-            307
-        ],
-        [
-            34,
-            54,
-            161
-        ],
-        [
-            33,
-            55,
-            914
-        ],
-        [
-            34,
-            55,
-            654
-        ],
-        [
-            33,
-            56,
-            171
-        ],
-        [
-            34,
-            56,
-            805
-        ],
-        [
-            33,
-            57,
-            750
-        ],
-        [
-            34,
-            57,
-            217
-        ],
-        [
-            33,
-            58,
-            325
-        ],
-        [
-            34,
-            58,
-            864
-        ],
-        [
-            33,
-            59,
-            552
-        ],
-        [
-            34,
-            59,
-            704
-        ],
-        [
-            33,
-            60,
-            108
-        ],
-        [
-            34,
-            60,
-            547
-        ],
-        [
-            33,
-            61,
-            821
-        ],
-        [
-            34,
-            61,
-            338
-        ],
-        [
-            33,
-            62,
-            911
-        ],
-        [
-            34,
-            62,
-            438
-        ],
-        [
-            33,
-            63,
-            804
-        ],
-        [
-            34,
-            63,
-            715
-        ],
-        [
-            33,
-            64,
-            446
-        ],
-        [
-            34,
-            64,
-            853
-        ],
-        [
-            33,
-            65,
-            709
-        ],
-        [
-            34,
-            65,
-            106
-        ],
-        [
-            33,
-            66,
-            149
-        ],
-        [
-            34,
-            66,
-            709
-        ],
-        [
-            33,
-            67,
-            405
-        ],
-        [
-            34,
-            67,
-            867
-        ],
-        [
-            33,
-            68,
-            705
-        ],
-        [
-            34,
-            68,
-            952
-        ],
-        [
-            33,
-            69,
-            853
-        ],
-        [
-            34,
-            69,
-            291
-        ],
-        [
-            33,
-            70,
-            540
-        ],
-        [
-            34,
-            70,
-            182
-        ],
-        [
-            33,
-            71,
-            858
-        ],
-        [
-            34,
-            71,
-            870
-        ],
-        [
-            33,
-            72,
-            147
-        ],
-        [
-            34,
-            72,
-            430
-        ],
-        [
-            33,
-            73,
-            218
-        ],
-        [
-            34,
-            73,
-            357
-        ],
-        [
-            33,
-            74,
-            969
-        ],
-        [
-            34,
-            74,
-            558
-        ],
-        [
-            33,
-            75,
-            404
-        ],
-        [
-            34,
-            75,
-            231
-        ],
-        [
-            33,
-            76,
-            540
-        ],
-        [
-            34,
-            76,
-            759
-        ],
-        [
-            33,
-            77,
-            619
-        ],
-        [
-            34,
-            77,
-            382
-        ],
-        [
-            33,
-            78,
-            708
-        ],
-        [
-            34,
-            78,
-            576
-        ],
-        [
-            33,
-            79,
-            287
-        ],
-        [
-            34,
-            79,
-            837
-        ],
-        [
-            33,
-            80,
-            542
-        ],
-        [
-            34,
-            80,
-            658
-        ],
-        [
-            33,
-            81,
-            525
-        ],
-        [
-            34,
-            81,
-            555
-        ],
-        [
-            33,
-            82,
-            579
-        ],
-        [
-            34,
-            82,
-            122
-        ],
-        [
-            33,
-            83,
-            468
-        ],
-        [
-            34,
-            83,
             844
         ],
         [
             33,
-            84,
-            935
+            34,
+            470
         ],
         [
             34,
-            84,
-            969
+            35,
+            599
         ],
         [
-            33,
-            85,
-            647
+            35,
+            36,
+            396
         ],
         [
-            34,
-            85,
-            532
+            36,
+            37,
+            102
         ],
         [
-            33,
-            86,
-            231
+            37,
+            38,
+            940
         ],
         [
-            34,
-            86,
+            38,
+            39,
+            500
+        ],
+        [
+            39,
+            40,
+            843
+        ],
+        [
+            40,
+            41,
+            128
+        ],
+        [
+            41,
+            42,
+            159
+        ],
+        [
+            42,
+            43,
+            171
+        ],
+        [
+            43,
+            44,
+            481
+        ],
+        [
+            44,
+            45,
+            324
+        ],
+        [
+            45,
+            46,
+            514
+        ],
+        [
+            46,
+            47,
+            506
+        ],
+        [
+            47,
+            48,
+            755
+        ],
+        [
+            48,
+            49,
+            509
+        ],
+        [
+            49,
+            100,
+            325
+        ],
+        [
+            1,
+            50,
+            201
+        ],
+        [
+            50,
+            51,
+            495
+        ],
+        [
+            51,
+            52,
+            179
+        ],
+        [
+            52,
+            53,
+            987
+        ],
+        [
+            53,
+            54,
+            789
+        ],
+        [
+            54,
+            55,
+            235
+        ],
+        [
+            55,
+            56,
+            905
+        ],
+        [
+            56,
+            57,
+            687
+        ],
+        [
+            57,
+            58,
+            376
+        ],
+        [
+            58,
+            59,
+            107
+        ],
+        [
+            59,
+            60,
+            279
+        ],
+        [
+            60,
+            61,
+            845
+        ],
+        [
+            61,
+            62,
+            452
+        ],
+        [
+            62,
+            63,
+            501
+        ],
+        [
+            63,
+            64,
+            874
+        ],
+        [
+            64,
+            65,
+            337
+        ],
+        [
+            65,
+            66,
+            251
+        ],
+        [
+            66,
+            67,
+            615
+        ],
+        [
+            67,
+            68,
+            752
+        ],
+        [
+            68,
+            69,
+            132
+        ],
+        [
+            69,
+            70,
+            505
+        ],
+        [
+            70,
+            71,
             525
         ],
         [
-            33,
-            87,
-            916
+            71,
+            72,
+            557
         ],
         [
-            34,
-            87,
-            951
+            72,
+            73,
+            350
         ],
         [
-            33,
-            88,
-            965
-        ],
-        [
-            34,
-            88,
-            800
-        ],
-        [
-            33,
-            89,
-            688
-        ],
-        [
-            34,
-            89,
-            198
-        ],
-        [
-            33,
-            90,
-            777
-        ],
-        [
-            34,
-            90,
-            626
-        ],
-        [
-            33,
-            91,
-            853
-        ],
-        [
-            34,
-            91,
-            945
-        ],
-        [
-            33,
-            92,
-            956
-        ],
-        [
-            34,
-            92,
-            386
-        ],
-        [
-            33,
-            93,
-            951
-        ],
-        [
-            34,
-            93,
-            562
-        ],
-        [
-            33,
-            94,
-            980
-        ],
-        [
-            34,
-            94,
-            602
-        ],
-        [
-            33,
-            95,
-            870
-        ],
-        [
-            34,
-            95,
-            150
-        ],
-        [
-            33,
-            96,
-            751
-        ],
-        [
-            34,
-            96,
-            699
-        ],
-        [
-            33,
-            97,
-            542
-        ],
-        [
-            34,
-            97,
-            468
-        ],
-        [
-            33,
-            98,
-            218
-        ],
-        [
-            34,
-            98,
-            851
-        ],
-        [
-            33,
-            99,
-            912
-        ],
-        [
-            34,
-            99,
-            197
-        ],
-        [
-            33,
+            73,
             100,
-            170
+            703
         ],
         [
-            34,
+            1,
+            74,
+            427
+        ],
+        [
+            74,
+            75,
+            520
+        ],
+        [
+            75,
+            76,
+            118
+        ],
+        [
+            76,
+            77,
+            480
+        ],
+        [
+            77,
+            78,
+            403
+        ],
+        [
+            78,
+            79,
+            552
+        ],
+        [
+            79,
+            80,
+            630
+        ],
+        [
+            80,
+            81,
+            161
+        ],
+        [
+            81,
+            82,
+            207
+        ],
+        [
+            82,
+            83,
+            878
+        ],
+        [
+            83,
+            84,
+            493
+        ],
+        [
+            84,
+            85,
+            991
+        ],
+        [
+            85,
+            86,
+            256
+        ],
+        [
+            86,
+            87,
+            614
+        ],
+        [
+            87,
+            88,
+            727
+        ],
+        [
+            88,
+            89,
+            927
+        ],
+        [
+            89,
+            90,
+            426
+        ],
+        [
+            90,
+            91,
+            934
+        ],
+        [
+            91,
+            92,
+            727
+        ],
+        [
+            92,
+            93,
+            860
+        ],
+        [
+            93,
+            94,
+            913
+        ],
+        [
+            94,
+            95,
+            953
+        ],
+        [
+            95,
+            96,
+            755
+        ],
+        [
+            96,
+            97,
+            927
+        ],
+        [
+            97,
             100,
-            744
+            576
         ]
     ],
-    "deadline": 95367
+    "deadline": 91777
 }
