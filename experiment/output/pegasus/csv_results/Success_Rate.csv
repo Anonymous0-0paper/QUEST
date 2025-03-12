@@ -4,13 +4,13 @@ QUEST,2,1,True,True
 QUEST_NDVFS,1,1,True,True
 QUEST_NDVFS,2,1,True,True
 Fuzzy,1,1,True,True
-Fuzzy,2,0.5,False,True
+Fuzzy,2,1,True,True
 NSGA3,1,1,True,True
 NSGA3,2,1,True,True
 MQGA,1,1,True,True
 MQGA,2,1,True,True
-Greedy,1,1,True,True
-Greedy,2,0.5,False,True
+Greedy,1,0.5,False,True
+Greedy,2,1,True,True
 MOPSO,1,1,True,True
 MOPSO,2,1,True,True
 RL,1,1,True,True
