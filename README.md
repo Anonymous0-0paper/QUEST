@@ -141,7 +141,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Citation
 The paper is under review!!!
-<!---If you use QUEST in your research, please cite [Note: ]:-->
+<!---If you use QUEST in your research, please cite [Note: ]:
 
 ```
 @article{quest2025,
@@ -150,5 +150,5 @@ The paper is under review!!!
   journal={[Journal]},
   year={2025}
 }
-```
+```-->
 
