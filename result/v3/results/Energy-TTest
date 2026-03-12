@@ -1,0 +1,15 @@
+\begin{table}[]
+\begin{tabular}{lcccccc}
+Energy Consumption            & \multicolumn{2}{c}{Cybershake - small scale - 30} & \multicolumn{2}{c}{Inspiral - medium scale - 50} & \multicolumn{2}{c}{Montage - large scale - 100} \\
+\multicolumn{1}{c}{\textit{}} & \textit{QUEST}           & \textit{MQGA}          & \textit{QUEST}          & \textit{MQGA}          & \textit{QUEST}          & \textit{MQGA}         \\
+Mean                          & 12078103                 & 14811371               & 8.38E+08                & 1.03E+09               & 83246933                & 1.06E+08              \\
+Variance                      & 3.45E+10                 & 6.87E+10               & 1.04E+15                & 3.97E+14               & 1.11E+13                & 5.37E+11              \\
+Observations                  & 20                       & 20                     & 20                      & 20                     & 20                      & 20                    \\
+df                            & \multicolumn{2}{c}{34}                            & \multicolumn{2}{c}{32}                           & \multicolumn{2}{c}{21}                          \\
+t Stat                        & \multicolumn{2}{c}{-38.0511}                      & \multicolumn{2}{c}{-22.7634}                     & \multicolumn{2}{c}{-29.264}                     \\
+P(T\textless{}=t) one-tail    & \multicolumn{2}{c}{9.29E-30}                      & \multicolumn{2}{c}{1.23E-21}                     & \multicolumn{2}{c}{8.3E-19}                     \\
+t Critical one-tail           & \multicolumn{2}{c}{1.690924}                      & \multicolumn{2}{c}{1.693889}                     & \multicolumn{2}{c}{1.720743}                    \\
+P(T\textless{}=t) two-tail    & \multicolumn{2}{c}{1.86E-29}                      & \multicolumn{2}{c}{2.47E-21}                     & \multicolumn{2}{c}{1.66E-18}                    \\
+t Critical two-tail           & \multicolumn{2}{c}{2.032245}                      & \multicolumn{2}{c}{2.036933}                     & \multicolumn{2}{c}{2.079614}
+\end{tabular}
+\end{table}
